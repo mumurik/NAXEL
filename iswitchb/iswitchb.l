@@ -644,7 +644,7 @@ selected.")
   "START-WINDOW does not work. xyzzy only looks for current frame."
   (or (ed::get-buffer-window buffer)
 	(let (win-alist)
-	  (dolist (pframe ed::*pseudo-frame-list*)
+	  (dolist (pframe (ed::get-pseudo-frame-list (selected-frame)))
 		(setq winconf (caddr (if (eq pframe (selected-pseudo-frame))
 								 (current-window-configuration)
 							   (ed::pseudo-frame-winconf pframe))))
@@ -653,7 +653,7 @@ selected.")
 
 (defun buffer-frame (buffer)
   "Return frame that contains BUFFER"
-  (dolist (pframe ed::*pseudo-frame-list*)
+  (dolist (pframe (ed::get-pseudo-frame-list (selected-frame)))
 	(setq winconf (caddr (ed::pseudo-frame-winconf pframe)))
 	(setq buffer (if (bufferp buffer) buffer (find-buffer buffer)))
 	(when (find buffer winconf :key #'cadr)
