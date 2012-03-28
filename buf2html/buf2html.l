@@ -1,6 +1,8 @@
 ;;; -*- Mode: Lisp; Package: EDITOR -*-
 ;;; buf2html.l --- convert text of buffer to HTML
 
+;; Modified by mumurik765 2012/03/29
+;;
 ;; Copyright (C) 2001-2006 OHKUBO Hiroshi <ohkubo@s53.xrea.com>
 
 ;; Author: OHKUBO Hiroshi <ohkubo@s53.xrea.com>
@@ -1895,8 +1897,8 @@ ed::html-highlight-mode が t でなければ変換しない。"
 
 (defun buf2html-insert-menu-items (&key menu pre-tag position head-sep tail-sep)
   "buf2html: HTML形式で名前を付けて保存ダイアログをメニューに追加"
-  (if (and (not (menup menu)) (menup *app-menu*))
-      (setq menu (get-menu *app-menu* 'ed::file)))
+  (if (and (not (menup menu)) (menup (get-app-menu (selected-frame))))
+      (setq menu (get-menu (get-app-menu (selected-frame)) 'ed::file)))
   (when (menup menu)
     (buf2html-delete-menu menu)
     (unless (or pre-tag position)
@@ -1923,15 +1925,15 @@ ed::html-highlight-mode が t でなければ変換しない。"
 
 (defun buf2html-delete-menu (&optional menu)
   "buf2html: HTML形式で名前を付けて保存ダイアログをメニューから削除"
-  (if (and (not (menup menu)) (menup *app-menu*))
-      (setq menu (get-menu *app-menu* 'ed::file)))
+  (if (and (not (menup menu)) (menup (get-app-menu (selected-frame))))
+      (setq menu (get-menu (get-app-menu (selected-frame)) 'ed::file)))
   (when (menup menu)
     (while (delete-menu menu 'buf2html-save-as-dialog))
     (while (delete-menu menu 'buf2html-sep))))
 
 (defun buf2html-set-app-menu (&optional position)
   "buf2html: HTML形式で名前を付けて保存を *app-menu* に追加"
-  (if *app-menu*
+  (if (get-app-menu (selected-frame))
       (buf2html-insert-menu-items :position position)
     (add-hook '*init-app-menus-hook*
               #'(lambda () (buf2html-set-app-menu position)))))
@@ -1943,14 +1945,14 @@ ed::html-highlight-mode が t でなければ変換しない。"
                (while (get-menu menu pos t)
                  (incf pos)))
              pos)))
-    (if *app-popup-menu*
+    (if (get-app-popup-menu (selected-frame))
         (progn
           (if (or (not (integerp position))
                   (minusp position)
-                  (> position (menu-length *app-popup-menu*)))
-              (setq position (menu-length *app-popup-menu*)))
+                  (> position (menu-length (get-app-popup-menu (selected-frame)))))
+              (setq position (menu-length (get-app-popup-menu (selected-frame)))))
           (insert-popup-menu
-           *app-popup-menu* position
+           (get-app-popup-menu (selected-frame)) position
            (define-popup-menu
              (:item 'buf2html-copy-selection-to-clipboard
               "選択範囲を部分的な HTML に変換してコピー(&S)"
