@@ -117,10 +117,44 @@ BROWSER_API int WINAPI navigate( char* url )
 	return SUCCEEDED(hRet);
 }
 
-BROWSER_API int WINAPI refresh() { return 0; }
-BROWSER_API int WINAPI goBack() { return 0; }
-BROWSER_API int WINAPI goForward() { return 0; }
-BROWSER_API int WINAPI goHome() { return 0; }
-BROWSER_API int WINAPI locationURL(int len, char *outUrl) { return 0; }
+BROWSER_API int WINAPI refresh()
+{
+	HRESULT hRet = gApp.GetIWeb2()->Refresh();
+	return SUCCEEDED(hRet);
+}
+BROWSER_API int WINAPI goBack()
+{
+	HRESULT hRet = gApp.GetIWeb2()->GoBack();
+	return SUCCEEDED(hRet);
+}
+BROWSER_API int WINAPI goForward() 
+{
+	HRESULT hRet = gApp.GetIWeb2()->GoForward();
+	return SUCCEEDED(hRet);
+}
+BROWSER_API int WINAPI goHome()
+{
+	HRESULT hRet = gApp.GetIWeb2()->GoHome();
+	return SUCCEEDED(hRet);
+}
+BROWSER_API int WINAPI locationURL(int len, char *outUrl) 
+{
+	VARIANT_BOOL busy;
+	gApp.GetIWeb2()->get_Busy(&busy);
+	while(busy) {
+		::Sleep(500);
+		gApp.GetIWeb2()->get_Busy(&busy);
+	}
+
+	BSTR bUrl = 0;
+	HRESULT hRet = gApp.GetIWeb2()->get_LocationURL(&bUrl);
+	if(SUCCEEDED(hRet))
+	{
+		CString retVal(bUrl);
+		strncpy_s(outUrl, len, retVal, retVal.GetLength()+1);
+		SysFreeString(bUrl);
+	}
+	return SUCCEEDED(hRet);
+}
 
 }
