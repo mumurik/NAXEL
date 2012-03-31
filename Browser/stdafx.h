@@ -15,6 +15,10 @@
 #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS      // 一部の CString コンストラクターは明示的です。
 
 #include <atlbase.h>
+extern CComModule _Module;
 #include <atlstr.h>
+#include <atlwin.h>
+#include <atlhost.h>
+#include <atltypes.h>
 
-// TODO: プログラムに必要な追加ヘッダーをここで参照してください。
+#include "xpi.h"

@@ -10,16 +10,15 @@
 #define BROWSER_API __declspec(dllimport)
 #endif
 
-
-BROWSER_API HWND GetHwnd();
-BROWSER_API int create( HWND parent, void *xpiArgs);
-BROWSER_API int close();
-BROWSER_API int createex( HWND parent, void* xpiArgs, int size, DWORD flag);
-BROWSER_API int navigate( char* url );
-BROWSER_API int refresh();
-BROWSER_API int goBack();
-BROWSER_API int goForward();
-BROWSER_API int goHome();
-BROWSER_API int locationURL(int len, char *outUrl);
-
-
+extern "C" {
+BROWSER_API HWND WINAPI GetHwnd();
+BROWSER_API int WINAPI create( HWND parent, void *xpiArgs);
+BROWSER_API int WINAPI close();
+BROWSER_API int WINAPI createex( HWND parent, void* xpiArgs, int size, DWORD flag);
+BROWSER_API int WINAPI navigate( char* url );
+BROWSER_API int WINAPI refresh();
+BROWSER_API int WINAPI goBack();
+BROWSER_API int WINAPI goForward();
+BROWSER_API int WINAPI goHome();
+BROWSER_API int WINAPI locationURL(int len, char *outUrl);
+}
