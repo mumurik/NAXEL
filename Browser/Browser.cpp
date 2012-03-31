@@ -36,6 +36,10 @@ public:
 		return pWebBrowser2;
 	}
 
+	~CBrowser()
+	{
+		wndIE.DestroyWindow();
+	}
 
 private:
 	CAxWindow	wndIE;
