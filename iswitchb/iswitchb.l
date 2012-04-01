@@ -362,8 +362,11 @@
 
 ;;; Code:
 
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (require "emacs"))
+
 (in-package "elisp")
-(require "emacs")
+
 
 
 ;; CL needed for cadr and last
