@@ -2,4 +2,4 @@
 ("author" . "mumurik765, etc.")
 ("url" . "https://github.com/mumurik/NAXEL")
 ("description" . "Network Archive for Xyzzy Extending Lisp.")
-("packages")
+("packages" (("name" . "elisp") ("version" . "1.0") ("author" . "mumurik765") ("file" . "elisp-1.0.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/elisp-1.0.zip") ("description" . "emacs移植キットのリバースエンジニアリング版です。iswitchbが動く所まで仕上げました。") ("category" "Libraries") ("md5" . "f0812e34eb44d238ab26853de50bfb9e") ("time" . 3542295405) ("depends") ("changes" . "iswitchbが動くように。") ("notice" . "MITライセンスです。") ("load-after-install" . "") ("load-before-uninstall" . "")))
