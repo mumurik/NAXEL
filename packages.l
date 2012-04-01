@@ -1,0 +1,5 @@
+("name" . "NAXEL")
+("author" . "mumurik765, etc.")
+("url" . "https://github.com/mumurik/NAXEL")
+("description" . "Network Archive for Xyzzy Extending Lisp.")
+("packages")

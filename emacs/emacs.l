@@ -1,3 +1,5 @@
+;Copyright (c) 2012 mumurik765
+
 (provide "emacs")
 
 (require "elisp")
