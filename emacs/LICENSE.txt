@@ -1,0 +1,2 @@
+emacs移植キットのライセンスはGNU GPL v2です。
+詳細はGPLv2.txtを参照ください。

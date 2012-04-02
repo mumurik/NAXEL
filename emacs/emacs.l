@@ -1,8 +1,11 @@
 ;;; -*- Mode: Lisp; -*-
+;;;
+;;; Modified by mumurik765 2012-04-02
+;;; Author: Maeda Manabu
 ;;
 ;;; Emacs Lisp Ç©ÇÁ xyzzy lisp Ç÷ÇÃïœä∑
 ;;;
-;;; Last fixed: <Thu Oct 14 2004 23:17:40 +0900>
+;;;
 ;;;
 
 ; íçà”
@@ -629,8 +632,10 @@ but optional second arg NODIGITS non-nil treats them like other chars."
   (dotimes (i count)
     (insert char)))
 
-(fset 'select-frame #'select-pseudo-frame)
-(fset 'selected-frame #'selected-pseudo-frame)
+;(fset 'select-frame #'select-pseudo-frame)
+;(fset 'selected-frame #'selected-pseudo-frame)
+(fset 'select-frame #'(lambda(frame) ()))
+
 
 (fset 'select-window #'set-window)
 
