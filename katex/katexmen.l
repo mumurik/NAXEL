@@ -1,8 +1,9 @@
 ;;; -*- Lisp; syntax: Common-Lisp -*-
 ;;; KaTeX menu functions.
-;;; katexmen.l, v 1.67.1.10
+;;; katexmen.l, v 1.67.1.11+1.0
+;;; Modified by mumurik765
 ;;; (c ) 2000-2001 Maeda Manabu
-;;; Last fixed  "Thu Jul 22 2004 22:22:17 +0900"
+;;; Last fixed  "2012/04/02"
 
 (provide "katexmen")
 
@@ -20,7 +21,7 @@
   (use-local-menu (KaTeX-add-menu)))
 
 (defun KaTeX-add-menu (&optional force)
-  (let ((menu (copy-menu-items *app-menu* (create-menu))))
+  (let ((menu (copy-menu-items (get-app-menu (selected-frame)) (create-menu))))
     (insert-popup-menu menu (get-menu-position menu 'ed::help)
 ;		       (or
 ;			(KaTeX-menu-for-selected-buffer force)

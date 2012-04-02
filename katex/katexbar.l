@@ -1,8 +1,9 @@
 ;;; -*- Lisp; syntax: Common-Lisp -*-
 ;;; Yet Another tex-mode for xyzzy - //花鳥//
-;;; katex.l, v 1.67.1.7
+;;; katexbar.l, v 1.67.1.11+1.0
+;;; modified by mumurik765
 ;;; fixed by Maeda Manabu
-;;; Last fixed  "Mon Aug 18 2003 20:37:22 +0900"
+;;; Last fixed  "2012/04/02"
 
 ; toolbarを使用する場合は、~/.xyzzyもしくはsitinit.lに以
 ; 下を追加してください。
@@ -37,9 +38,4 @@
 
 (defun KaTeX-delete-tool-bar ()
   (interactive)
-  (when (find-command-bar 'elisp::KaTeX-tool-bar)
-    (delete-command-bar 'elisp::KaTeX-tool-bar)))
-
-(unless (find-command-bar 'elisp::KaTeX-tool-bar)
-  (if *KaTeX-use-toolbar*
-      (define-command-bar 'elisp::KaTeX-tool-bar "かてふ(&K)")))
+  )

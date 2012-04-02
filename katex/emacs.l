@@ -629,8 +629,10 @@ but optional second arg NODIGITS non-nil treats them like other chars."
   (dotimes (i count)
     (insert char)))
 
-(fset 'select-frame #'select-pseudo-frame)
-(fset 'selected-frame #'selected-pseudo-frame)
+; by mumurik
+;(fset 'select-frame #'select-pseudo-frame)
+;(fset 'selected-frame #'selected-pseudo-frame)
+(fset 'select-frame #'(lambda(frame) ()))
 
 (fset 'select-window #'set-window)
 

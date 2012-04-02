@@ -1,6 +1,7 @@
 ;;; -*- Lisp; syntax: Common-Lisp -*-
 ;;; Yet Another tex-mode for xyzzy - //‰Ô’¹//
-;;; katex.l, v 1.67.1.10
+;;; katex.l, v 1.67.1.11+1.0
+;;; modified by mumurik765
 ;;; fixed by Maeda Manabu
 ;;; Last fixed  "Thu Oct 14 2004 23:21:33 +0900"
 
@@ -616,9 +617,6 @@ more features are available and they are documented in the manual.
   (setq regexp-keyword-list *KaTeX-math-formats*)        ;<- $$ color
   (make-local-variable 'mode-specific-indent-command)    ;m.m
   (setq mode-specific-indent-command 'KaTeX-indent-line) ;m.m
-  (when (and (find-command-bar 'KaTeX-tool-bar)          ;-> tool-bar ;m.m
-	     *KaTeX-use-toolbar*)
-    (show-command-bar 'KaTeX-tool-bar))                  ;<- tool-bar ;m.m
   (and (= 0 (buffer-size)) (file-exists-p KaTeX-template-file)
        (setq KaTeX-template-file (expand-file-name KaTeX-template-file))
        (y-or-n-p (format nil "Insert ~A" KaTeX-template-file))
