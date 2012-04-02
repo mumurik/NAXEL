@@ -1,0 +1,80 @@
+;;; -*- Mode: Lisp; syntax: lisp -*- 
+; .xyzzy のサンプル
+; 必要な物を.xyzzyにコピーしてください
+
+; ■ KaTeX
+; *load-path* に追加 (.xyzzyに必須)
+(push (merge-pathnames "site-lisp/katex" (si:system-root)) *load-path*)
+
+;;; 以下は、siteinit.lでも可
+;;;  siteinit.lへ書くときは、↑をsiteinit.lにも書くこと
+; パッケージを有効にする
+(require "elisp")
+
+; texファイルを読み込んだとき、KaTeXモードにする
+(push '("\\.tex$" . elisp::katex-mode) *auto-mode-alist*)
+;(push '("\\.sty$" . elisp::katex-mode) *auto-mode-alist*)
+;(push '("\\.cls$" . elisp::katex-mode) *auto-mode-alist*)
+(autoload 'elisp::katex-mode "katex" t)
+
+; Alt+Ret が使えるようにする
+(set-extended-key-translate-table exkey-M-return #\M-RET)
+
+;;; 各種設定
+; TeXのコマンド
+;(setq elisp::tex-command "platex") ; "platex"を使う
+;(setq elisp::tex-command "platex -src") ; source specialを使う
+
+; 全般的な設定
+;(setq elisp::*KaTeX-prefix* #\F4) ; "C-c"でコピーしたい
+;(setq elisp::KaTeX-use-AMS-LaTeX t) ; AMS-LaTeXを使う
+;(setq elisp::KaTeX-math-need-image t) ; 数式モードでTABを押したときにイメージを表示する
+;(setq elisp::*KaTeX-math-formats*
+;      (compile-regexp-keyword-list
+;       '(("\\$[^$]*\\$" t (:keyword 2) nil)))) ; 正規表現での色付け
+; [色表示の指定]の部分は、xyzzyのChangeLog.htmlの
+;    Mon Jul 02 2001 Version 0.2.2.202
+; 付近をみる
+
+; toolbar
+;(setq elisp::*KaTeX-use-toolbar* t) ; KaTeX toolbarを表示する
+; toolbar を[表示]->[ツールバー]から削除したい場合は、
+;  (elisp::KaTeX-delete-tool-bar)
+; で消えるはず
+
+; プロセス関係
+;(setq elisp::*typeset-with-shell-command* t) ; TeXの実行に *shell* を使う
+;(setp elisp::*preview-with-typeset* t) ; previewするファイルがなければ、typesetする
+
+; 補完関係
+;(setq elisp::KaTeX-no-begend-shortcut t) ; [prefix] b ?? のショートカットを使わない
+;(setq elisp::KaTeX-default-document-style "jsarticle") ; document-styleの初期値
+;(setq elisp::env-name "eqnarray") ; begin型補完の初期値
+;(setq elisp::section-name "section") ; section型補完の初期値
+;(setq elisp::fontsize-name "bf") ; large型補完の初期値
+;(setq elisp::single-command "newpage") ; maketitle型補完の初期値
+
+; その他
+;(setq elisp::KaTeX-default-pop-window-height 6) ; 画面を分割するときの高さ
+;(setq elisp::KaTeX-template-file "~/template.tex") ; 新規ファイル作成時に読み込むファイル
+;(setq elisp::KaTeX-fill-column 60) ; 自動改行の幅を変える
+
+; ■ kahtml
+;(push '("\\.html$" . elisp::kahtml-mode) *auto-mode-alist*)
+;(autoload 'elisp::kahtml-mode "kahtml" t) ; "Yet Another HTML mode"
+
+; hook
+;(add-hook 'elisp::katex-mode-hook
+;	  #'(lambda ()
+;	      (auto-fill-mode nil) ; 自動改行をやめる 
+;             (run-hooks '*text-mode-hook*) ; *text-mode-hook* を走らせる
+;	      ))
+;(add-hook 'elisp::katex-mode-hook 'olt-setting-LaTeX-mode) ; olt の設定
+;(pushnew '(elisp::katex-mode . olt-setting-LaTeX-mode)
+;	 *olt-setting-alist* :test 'equal))
+
+; katex-mode-load-hook が多くなるときは、katexhks.l に書く
+;(add-hook 'elisp::katex-mode-load-hook
+;	  #'(lambda ()
+;	      (KaTeX-define-begend-key '(#\b #\a) "abstract") ; [prefix] b a で \begine{abstract} \end{abstract} を入力する
+;	      ))

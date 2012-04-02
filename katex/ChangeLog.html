@@ -1,0 +1,136 @@
+<!doctype html public "-//W3C//DTD HTML 3.2//EN">
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+  <title>ChangeLog</title>
+ </head>
+ <body text="#000000" bgcolor="#ffffff" link="#000080" vlink="#8000ff" alink="#800000">
+  <blockquote>
+   <h4> Thu Oct 14 2004 Version 1.67.1.11</h4>
+   <ul>
+    <li>KaTeXとkahtmlを同時に起動すると動作がおかしかったのを修正</li>
+    <li>sample.xyzzyを作成。</li>
+    <li>typoをいくつか修正。</li>
+    <li>kahtmlでファイル読み込みが怪しかったのを修正。</li>
+   </ul>
+   <h4> Fri Jul 23 2004 Version 1.67.1.10</h4>
+   <ul>
+    <li>letの再定義がおかしかったのを修正。</li>
+    <li>typoをいくつか修正。</li>
+    <li>プロセスの状態をきちんと取れていなかったのを修正。</li>
+    <li>fillの挙動が怪しかったのを修正。</li>
+   </ul>
+   <h4> Sun May 30 2004 Version 1.67.1.9</h4>
+   <ul>
+    <li>kahtml で css ファイルを使っているソースを開けなかったのを修正。</li>
+   </ul>
+   <h4> Sat Nov 01 2003 Version 1.67.1.8</h4>
+   <ul>
+    <li>正規表現のキーワード色分けが、出来なくなっていたのを修正。</li>
+    <li>yahtml ならぬ kahtml を作ってみたり(要browserex関係)。</li>
+   </ul>
+   <h4> Wed Sep 18 2003 Version 1.67.1.7</h4>
+   <ul>
+    <li>dvioutを起動したときに、dos画面が表示されるのを、されないようにした。</li>
+    <li>Toolbarを作ってみた。(詳細はkatexbar.l)</li>
+    <li>数式モード等でTABを打つとエラーになるのを修正。</li>
+    <li>オンラインヘルプを使えるようにしてみた。(install.txtの５参照)</li>
+    <li>メニューにあったtypoを修正。</li>
+    <li>lprコマンドが使えるようになったかも。</li>
+   </ul>
+   <h4> Wed Jan 22 2003 Version 1.67.1.6</h4>
+   <ul>
+    <li>$ の入力がとっても遅くなるのを避けれるような変数(*not-use-verbatime*)を追加。</li>
+    <li>試しに正規表現のキーワード色分けを入れてみた。*KaTeX-math-formats*で設定。</li>
+    <li>KaTeX-indent-line がおかしかったのを修正。</li>
+    <li>preview するときに黒い画面を出さないようにした。</li>
+   </ul>
+   <h4> Sat Sep 08 2001 Version 1.67.1.5</h4>
+   <ul>
+    <li>\%でもコメントと認識されるのを修正。</li>
+    <li>数式記号イメージ補完、ギリシャ文字補完が数式環境中でできなかったのを修正。</li>
+    <li>LaTeXコマンドの変更が変になっていたのを修正。</li>
+    <li>mode-specific-indent-command を 'KaTeX-indent-line に設定した。</li>
+    <li>fill がおかしかったのを修正。</li>
+   </ul>
+   <h4> Mon Jul 16 2001 Version 1.67.1.4</h4>
+   <ul>
+    <li>auto-fill が時々おかしくなるのを修正。</li>
+    <li>\ref{}の補完入力で、fig:fooとかできなかったのを修正。</li>
+    <li>section型の補完を途中でやめたとき変だったのを修正。</li>
+   </ul>
+   <h4> Thu Jun 21 2001 Version 1.67.1.3</h4>
+   <ul>
+    <li>section型でヒストリが効かなかったのを修正。</li>
+    <li>byte-compile できなかったのを修正。</li>
+    <li>メニューを起動時に読み込むようにした。</li>
+    <li>"$"の入力時に黙り込む時間を短くした（つもり）。</li>
+    <li>\ref{}の補完入力がおかしかったのを修正。</li>
+   </ul>
+   <h4> Mon May 07 2001 Version 1.67.1.2</h4>
+   <ul>
+    <li>ユーザー辞書への保存が変だったのを修正。</li>
+    <li>documentstyle,documentclassで補完できなかったのを修正。</li>
+    <li>auto-fillできなかったのを修正。</li>
+   </ul>
+   <h4> Tue May 01 2001 Version 1.67.1.1</h4>
+   <ul>
+    <li>メニューを作ってみたりした。</li>
+    <li>エラーした行にときどき飛ばなかったのを修正(したつもり)。</li>
+    <li>タイプセットしてエラーが出たときの動作を変更。</li>
+    <li>ヒストリを保存するようにした。</li>
+    <li>ユーザー辞書に保存したキーワードが、有効にならなかったのを修正。</li>
+    <li>数式記号イメージ、ギリシャ文字補完のリストの表示を変更。</li>
+    <li>section型補完のとき、ミニバッファ中で補完が出来なかったのを修正。</li>
+    <li>[prefix] #\SPC で随時補完できなかったのを修正。</li>
+    <li>そのほか細かいバグ取り(したつもり)。</li>
+   </ul>
+   <h4> Wed Mar 14 2001 Version 1.67.1.0</h4>
+   <ul>
+    <li>名前をKaTeX(花鳥)に変更。正式リリース。</li>
+    <li>ChangeLog(これ)を作った。</li>
+    <li>window-edgesがおかしかったのを修正。</li>
+    <li>auto-fill-modeでfillしたついでにインデントさせるのを忘れていたのを修正。</li>
+    <li>YaTeX-do-completion,YaTeX-sign-alist-defaultのなかで、文字コードが直っていなかったのを修正。</li>
+    <li>YaTeX-insert-braces-regionの引数 beg end の入れ替えをしていなかったのを修正。</li>
+    <li>ラベルの参照で、他のファイルにあるラベルを参照できなかったのを修正。</li>
+    <li>messageをminibufferに出力するようにした。</li>
+   </ul>
+   <h4>Fri Dec 22 2000 Version 2.2</h4>
+   <ul>
+    <li>insert-charが間違っていたのを修正。</li>
+    <li>scroll-up,scroll-downを追加。</li>
+    <li>substringの仕様がEmacs Lispと違ったのを修正。</li>
+    <li>window-edgesを追加。</li>
+    <li>YaTeX-math-(forward|backward)が動かなかったのを修正。</li>
+    <li>YaTeX-change-math-imageが動かなかったのを修正。</li>
+    <li>{\large ...}関係が [prefix] k で削除できなかったのを修正。</li>
+    <li>math-modeで ;[TAB] の時に出てくるメニューのタイトルが２カラム分あるのにメニューは１カラムしかでなかったのを修正</li>
+    <li>math-modeの ;-[TAB] で、"-"から始まる補完リストだけを表示できなかったのを修正。</li>
+    <li>math-modeで ; の後に -,--,--> とタイプするとカーソル位置に\mp,\equiv,\longrightarrowとコマンドが表示できなかったのを修正。</li>
+    <li>YaTeX-math-need-imageが動かなかったのを修正。</li>
+    <li>YaTeX-make-sectionで、２つの引数をとる辞書にないコマンドが実行することができなかったのを修正。</li>
+    <li>[prefix] 4 g などが使えなかったのを修正。</li>
+    <li>YaTeX-inhibit-prefix-letterが設定できなかったのを修正。</li>
+    <li>セクション区切りのアウトライン表示が動かなかったのを修正。</li>
+    <li>すでに書いたテキストを括る補完ができなかったのを修正。</li>
+   </ul>
+   <h4>Thu Nov 30 2000 Version 2.1</h4>
+   <ul>
+    <li>call-processを間違えて消してしまったのを復活。</li>
+    <li>enumerate環境のitemの補完ができなくなったのを修正。</li>
+    <li>\ref{}が動かなかったのを修正。</li>
+    <li>イタリック補正ができなかったのを修正。</li>
+    <li>YaTeX-typeset-bufferで他のバッファにYaTeXのファイルがあるとき、保存できなかったのを修正。</li>
+   </ul>
+   <h4>Mon Nov 13 2000 Version 2.0</h4>
+   <ul>
+    <li>elispパッケージを作って、その中に入れた。</li>
+   </ul>
+   <h4>Thu Nov 02 2000 Version 1.0</h4>
+   <ul>
+    <li>xyzzy ML内にてとりあえず公開。</li>
+   </ul>
+  </blockquote>
+ </body>
+</html>

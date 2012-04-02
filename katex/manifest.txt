@@ -1,0 +1,33 @@
+dir			sample `dir' file for Info
+docs/htmlqa		yahtmlに関する一般的な質問と回答
+docs/qanda		野鳥に関する一般的な質問と回答
+docs/qanda.eng		Q and A on using YaTeX
+docs/yatexe		Texinfo Manual
+docs/yatexe.tex		Texinfo Manual source text
+docs/yatexj		日本語 Texinfo マニュアル
+docs/yatexj.tex		日本語 Texinfo マニュアルのソース
+docs/yatexadd.doc	野鳥用付加関数の仕様説明
+docs/yatexgen.doc	付加関数自動作成モード使用上の注意
+docs/yatex.ref		野鳥・キーバインド早見表
+docs/yatexref.eng	Quick reference of YaTeX's key bindings
+help/yatexHLP.jp	オンラインヘルプデータ
+help/yatexHLP.eng	LaTeX on-line help text
+yatex.new		各バージョンの変更履歴
+comment.l		コメントアウト関連
+kahtml.l		花鳥風 html モード
+katex.l			花鳥・主 Emacs-Lisp ファイル
+katexadd.l		付加関数の定義例
+katexbar.l		toolbar表示プログラム
+katexenv.l		LaTeX環境依存の関数
+katexexp.l		花鳥の関数をexportする(特に必要なし)
+katexgen.l		花鳥用付加関数自動作成モード
+katexhie.l		花鳥用ドキュメント階層表示プログラム
+katexhks.l		hookを詰め込むために使う
+katexhlp.l		オンラインヘルププログラム
+katexins.l		花鳥用ファイルのバイトコンパイル
+katexlib.l		花鳥用ライブラリ関数
+katexmen.l		花鳥用メニュー表示プログラム
+katexmth.l		数式環境用記号補完モード
+katexprc.l		花鳥・プロセス処理関数
+katexsec.l		セクション抽出関数
+makefile.l		バイトコンパイルする

@@ -1,0 +1,83 @@
+Installation of KaTeX のインストール
+******************************************
+
+以下の項目を~/.xyzzyもしくはsitinit.lに加えてください。
+
+１ 花鳥の xyzzy-lisp ファイル群を置くディレクトリを *load-path* に加えます。
+  （/site-lisp に置くのであれば設定しなくていいです。）
+  たとえば、`d:/xyzzy/site-lisp/katex'に置くのであれば、
+
+      (push "d:/xyzzy/site-lisp/katex" *load-path*)
+
+  または、
+
+      (setq *load-path* (cons "d:/xyzzy/site-lisp/katex" *load-path*))
+
+  などとします。
+
+２ パッケージを有効にします。
+      (require "elisp")
+
+３.texファイルを読み込んだとき、勝手にKaTeXモードになるようにする。
+
+      (push '("\\.tex$" . elisp::katex-mode) *auto-mode-alist*)
+      (autoload 'elisp::katex-mode "katex" t)
+
+  または、
+
+      (setq *auto-mode-alist*
+           (cons (cons "\\.tex$" 'elisp::katex-mode) *auto-mode-alist*))
+      (autoload 'elisp::katex-mode "katex" t)
+
+最終的に、
+      (push "d:/xyzzy/site-lisp/katex" *load-path*)
+      (require "elisp")
+      (push '("\\.tex$" . elisp::katex-mode) *auto-mode-alist*)
+      (autoload 'elisp::katex-mode "katex" t)
+となっているはずです。
+
+ただし、KaTeXの設定を siteinit.l に書く場合には、
+      (push "d:/xyzzy/site-lisp/katex" *load-path*)
+だけは、.xyzzy の方に書いておいてください。
+
+ 注）バイトコンパイルしたい人は、katexins.lも参考にしてください。
+     sample.xyzzyにも設定が書いてあります。参考にしてください。
+
+
+５.オンラインヘルプとinfoを使えるようにする
+
+help/yatexHLP.jp を xyzzy の etc ディレクトリに katexHLP.jp と名前を変え
+てコピーします。
+
+info ディレクトリに docs/yatexj, docs/yatexe をコピーし、info ディレク
+トリの dir というファイルにこのディレクトリの dir ファイルの中身を追加し
+ます。
+
+６．タイプセッタの設定
+
+標準で jlatex を使うようになっています。platex を使う人は、~/.xyzzyもし
+くはsitinit.lに以下を追加してください。
+      (setq elisp::tex-command "platex")
+Source Specialが使いたい人は、
+      (setq elisp::tex-command "platex -src")
+としてください。
+
+７．正規表現のキーワード色分けの設定
+
+正規表現のキーワードを使えるようにしてみました。
+標準の設定は、共通設定で設定できるキーワード２の色で下線を引くようにして
+あります。
+
+ほかの色にしたい人や、下線がいらない人は、~/.xyzzyもしくはsitinit.lに以
+下を追加してください。
+   (setq elisp::*KaTeX-math-formats*
+     (compile-regexp-keyword-list
+      '(("\\$[^$]*\\$" t [表示色の指定] nil)
+        )
+      ))
+[色表示の指定]の部分は、xyzzyのChangeLog.htmlの
+   Mon Jul 02 2001 Version 0.2.2.202
+付近をみてください。
+
+８．なんでM-RETが効かないんだ！！
+   (set-extended-key-translate-table exkey-M-return #\M-RET)
