@@ -1,6 +1,7 @@
 ;;  iswitchb.l - iswitchb.el for xyzzy
 #|
   by Deecay
+  modified by mumurik765
 
  ●説明
 
@@ -23,6 +24,7 @@
  2005-07-28 初版
  2006-05-29 1.0
  2007-06-04 1.1   削除されたウィンドウですというエラーが出にくくなったかも
+ 2012-04-02 1.1+0.1 multiframe対応。
 
  ●インストール
 
