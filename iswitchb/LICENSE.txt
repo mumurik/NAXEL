@@ -1,3 +1,3 @@
-iswitchbの配布ライセンスはGNU GPLです。
-詳細はNAXEL/gpl.txtを参照ください。
+﻿iswitchbの配布ライセンスはGNU GPLです。
+詳細はgpl.txtを参照ください。
 
