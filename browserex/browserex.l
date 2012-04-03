@@ -4,7 +4,8 @@
 ;; Copyright (C) 2001-2005 OHKUBO Hiroshi <ohkubo@s53.xrea.com>
 
 ;; Author: OHKUBO Hiroshi <ohkubo@s53.xrea.com>
-;; Time-stamp: <2005/10/08 10:33:18 +0900>
+;; Modified by: mumurik765
+;; Time-stamp: 2012/04/03
 
 ;;; Commentary:
 
@@ -1341,15 +1342,15 @@ LVS_ICON LVS_SMALLICON LVS_LIST nil のいずれか")
 ;;; mouse menu
 (defun browserex-mouse-menu-popup (&optional apps)
   (interactive)
-  (delete-menu *app-popup-menu* 'ed::url)
-  (delete-menu *app-popup-menu* 'ed::url-sep)
-  (delete-menu *app-popup-menu* 'browserex-url)
-  (delete-menu *app-popup-menu* 'browserex-url-sep)
+  (delete-menu (get-app-popup-menu (selected-frame)) 'ed::url)
+  (delete-menu (get-app-popup-menu (selected-frame)) 'ed::url-sep)
+  (delete-menu (get-app-popup-menu (selected-frame)) 'browserex-url)
+  (delete-menu (get-app-popup-menu (selected-frame)) 'browserex-url-sep)
   (set-window *last-mouse-window*)
   (continue-pre-selection)
   (let (menu url)
     (cond ((eql (get-selection-type) 3)
-           (setq menu *app-rectangle-popup-menu*))
+	   (setq menu (get-app-rectangle-popup-menu (selected-frame))))
           ((and (eql (get-selection-type) 2)
                 (save-excursion
                   (goto-char (min (selection-point)
@@ -1357,9 +1358,9 @@ LVS_ICON LVS_SMALLICON LVS_LIST nil のいずれか")
                   (looking-at ed::*url-scheme-regexp*)))
            (setq url (buffer-substring (selection-point)
                                        (selection-mark)))
-           (setq menu *app-popup-menu*))
+           (setq menu (get-app-popup-menu (selected-frame))))
           (t
-           (setq menu *app-popup-menu*)
+           (setq menu (get-app-popup-menu (selected-frame)))
            (save-excursion
              (goto-last-mouse-point)
              (skip-chars-backward "-a-zA-Z0-9_/~.#@%?&=;+(),'$!*:")
@@ -1512,12 +1513,12 @@ LVS_ICON LVS_SMALLICON LVS_LIST nil のいずれか")
   (init-browserex-menu)
   ;; browserex メニューの設定
   (if *browserex-set-menu*
-      (if (menup ed::*app-menu*)
+      (if (menup (ed::get-app-menu (selected-frame)))
           (insert-browserex-menu)
         (add-hook 'ed::*init-app-menus-hook* 'insert-browserex-menu)))
   ;; browserex フォーカスメニューの作成・設定
   (if *browserex-set-focus-menu*
-      (if (menup ed::*app-menu*)
+      (if (menup (ed::get-app-menu (selected-frame)))
           (insert-browserex-focus-menu-items :head-sep t)
         (add-hook 'ed::*init-app-menus-hook*
                   #'(lambda () (insert-browserex-focus-menu-items :head-sep t))))))
@@ -1537,7 +1538,7 @@ LVS_ICON LVS_SMALLICON LVS_LIST nil のいずれか")
           (unregister-history-variable x)))))
 
 ;;
-(if (menup ed::*app-menu*)
+(if (menup (ed::get-app-menu (selected-frame)))
     (browserex-startup)
   (add-hook 'ed::*post-startup-hook* 'browserex-startup))
 
