@@ -68,6 +68,7 @@
 	  *tterm-text-bg-green* *tterm-text-bg-yellow*
 	  *tterm-text-bg-blue* *tterm-text-bg-magenta*
 	  *tterm-text-bg-cyan* *tterm-text-bg-white*
+          *tterm-text-bg-rv* *tterm-text-fg-rv*
 	  *tterm-meta-code*
 	  tterm-reset-terminal
 	  tterm-set-input-encoding tterm-set-output-encoding
@@ -421,6 +422,11 @@
 (defvar *tterm-text-bg-cyan* 6)
 (defvar *tterm-text-bg-white* 7)
 (defvar *tterm-pframe-p* t)
+
+(defvar *tterm-text-fg-rv* *tterm-text-fg-white*
+  "反転時のデフォルト背景色")
+(defvar *tterm-text-bg-rv* *tterm-text-fg-black*
+  "反転時のデフォルト文字色")
 
 (defvar *tterm-max-log-lines* 5000)
 
@@ -3011,10 +3017,10 @@
 		(length *tterm-buffer*)
 		nil
 		':foreground (if tterm-text-rv
-				 (or tterm-text-bg *tterm-text-fg-white*)
+				 (or tterm-text-bg *tterm-text-fg-rv*)
 			       tterm-text-fg)
 		':background (if tterm-text-rv
-				 (or tterm-text-fg *tterm-text-bg-black*)
+				 (or tterm-text-fg *tterm-text-bg-rv*)
 			       tterm-text-bg)
 		':bold tterm-text-bo
 		':underline tterm-text-ul)
