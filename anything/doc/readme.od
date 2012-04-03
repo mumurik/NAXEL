@@ -1,0 +1,173 @@
+= ANYTHING (for xyzzy)
+
+複数の機能を一つにまとめてしまう lisp
+emacs の anything とは動作が多分(かなりかも;))違ます。
+
+== INSTALL
+
+ $lisp$
+  (require :anything/anything)
+  (require :anything/sources)
+  (require :anything/menu)
+
+:anything/sources :anything/menu なんて飾りです。
+
+== UI
+
+ M-x anything
+
+インクリメンタルに候補を絞り、カテゴリで実行したい動作が変わります。
+
+== KEYMAP
+
+|#\C-p   |anything-previous-line   | 次行       |
+|#\C-n   |anything-next-line       | 前行       |
+|#\C-v   |anything-next-source     | 次のソース |
+|#\M-v   |anything-previous-source | 前のソース |
+|#\C-M-n |anything-next-page       | 次のページ |
+|#\C-M-p |anything-previous-page   | 前のページ |
+|#\C-h   |anything-backward-char   | 訂正       |
+|#\C-l   |anything-recenter        | 真ん中に   |
+|#\C-g   |anything-quit            | 中止       |
+|#\C-i   |anything-action-tab      | 属性指定   |
+|#\RET   |anything-action-return   | 実行       |
+|#\LFD   |anything-action-return   | 実行       |
+|#\C-@   |anything-set-mark-action |file に mark をつけて開く|
+|#\C-s   |anything-isearch-forward | isearch    |
+|#\C-r   |anything-isearch-backward| isearch    |
+|#\C-z   |anything-upper-directory |up directory|
+
+== CUSTUMIZE
+
+
+=== LOOK
+
+色
+
+ $lisp$
+ (setq *anything-select-color*
+   '(:foreground 0 :background 14 :bold t))
+ (setq *anything-sources-name-color*
+   '(:foreground 0 :background 14 :bold t))
+
+横に表示
+
+ $lisp$
+ ;; with-output-to-temp-buffer の説明を参考にして下さい
+ (setq *anything-buffer-popup* t)
+ (setq *anything-buffer-vert* t)
+
+バッファタブを消す
+
+ $lisp$
+ (setq *anything-buffer* " *anything*")
+
+フレーム はいらない
+ (setq *anything-use-frame* nil)
+
+=== HOOK
+
+anything の開始時と終了時に実行する場合
+
+ $lisp$
+ *anything-open-hook*
+ *anything-close-hook*
+
+=== MIGEMO
+
+migemo がインストールされていれば絞りこみに migemo を使います。
+
+ $lisp$
+ (setq *anything-migemo-on* t)
+
+migemo で絞り込む type 数
+
+ $lisp$
+ (setq *anything-migemo-length* 4)
+
+=== SOURCES
+
+sources を追加していくことで拡張できます。
+
+==== add-anything-sources
+
+ $lisp$
+ :name string
+
+表示するための名前 カテゴリ
+
+ $lisp$
+ :type attribute
+
+属性を指定
+
+ $lisp$
+ :candidates function
+
+リストを返す関数
+
+ $lisp$
+ :action function arg
+
+引数を一つ取る関数
+
+ $lisp$
+ :init init
+
+初期値
+
+ $lisp$
+ :move-action function
+
+移動した時に呼ばれる関数
+
+ $lisp$
+ :visible-mode buffer-mode , list
+
+表示したいモード(モードのリスト)
+
+==== add-anything-attribute
+
+ $lisp$
+ :type source type
+
+ソースでしている属性を指定
+
+ $lisp$
+ :display string
+
+表示するための名前
+
+ $lisp$
+ :action function
+
+引数を一つ取る関数
+
+ $lisp$
+ :default variable
+
+RET の場合実行される関数
+
+=== ANOTHER ANYTHING
+
+通常の anything とは別に sources を作り呼び出せます。
+
+====  another-anything
+
+ $lisp$
+ name
+
+name-anything という関数が生成されます。
+
+ $lisp$
+ body sources attribute
+
+name-anything で使う source と attribute 
+
+
+== ToDo
+
+- 括弧好きな人が拡張を公開してくれるのを待つ
+- multi-line
+- process 用の関数の提供
+
