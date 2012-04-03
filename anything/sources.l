@@ -1,6 +1,7 @@
 ;;; -*- Mode: Lisp -*-
 ;;  sources: anything
 ;;; Author:        amefura <amefura@gmail.com>
+;;; Modified by:   mumurik765
 ;;; License:       sources is released under an MIT license.
 ;;                 See anything/doc/mit-license for full license.
 ;;; Code:
@@ -68,7 +69,7 @@
                       :candidates (lambda()
                                     (let((f (delete *anything-pseudo-frame-name*
                                                     (mapcar #'ed::pseudo-frame-name
-                                                            ed::*pseudo-frame-list*)
+							    (ed::get-pseudo-frame-list (selected-frame)))
                                                     :test 'equal)))
                                       (unless (= 1 (length f)) f)))
                       :action (lambda(f)(switch-pseudo-frame f))
