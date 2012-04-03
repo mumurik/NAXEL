@@ -41,6 +41,9 @@
 ;;   - Toy ‚³‚ñ‚Ì‚²—v–]‚É‚æ‚è*tterm-favorite-hosts*‚©‚çhost‚ð‘I‚Ô‚æ‚¤‚É
 ;;
 
+;; Modified by DeaR <nayuri@kuonn.mydns.jp>
+;; Last Updated: <2012-04-03 15:05:00 DeaR>
+
 
 ;; Code
 
@@ -73,7 +76,7 @@
 	  *tterm-favorite-hosts*
 	  *tterm-io-encoding-alist*))
 
-(defconstant *tterm-version* "tterm.l version 0.35")
+(defconstant *tterm-version* "tterm.l version 0.35+1.0")
 
 
 ;;;------------------------------------------------------------------------
@@ -2388,6 +2391,7 @@
        menu))
     ))
 
+#-multiple-frames
 (defun tterm-popup-menu ()
   (interactive)
   (continue-pre-selection)
@@ -2400,6 +2404,20 @@
 	    (call-interactively 'ed::mouse-menu-popup)
 	  (delete-menu *app-popup-menu* 0 t)
 	  (delete-menu *app-popup-menu* 'tterm-sep)))
+    (call-interactively 'ed::mouse-menu-popup)))
+#+multiple-frames
+(defun tterm-popup-menu ()
+  (interactive)
+  (continue-pre-selection)
+  (set-window *last-mouse-window*)
+  (if (eq buffer-mode 'tterm-mode)
+      (let ((app-popup-menu (get-app-popup-menu (selected-frame))))
+        (insert-popup-menu app-popup-menu 0 *tterm-popup-menu* "&TTerm")
+        (insert-menu-separator app-popup-menu 1 'tterm-sep)
+        (unwind-protect
+            (call-interactively 'ed::mouse-menu-popup)
+          (delete-menu app-popup-menu 0 t)
+          (delete-menu app-popup-menu 'tterm-sep)))
     (call-interactively 'ed::mouse-menu-popup)))
 
 
