@@ -435,6 +435,7 @@
   '(("sjis" *tterm-state-sjis* *tterm-state-esc*)
     ("euc-jp" *tterm-state-eucjp* *tterm-state-esc*)
     ("iso-2022" *tterm-state-iso2022* *tterm-state-iso2022-esc* :us-ascii)
+    ("utf8" *tterm-state-utf8* *tterm-state-iso2022-esc* :us-ascii)
     ("euc-jp-with-esc" *tterm-state-iso2022* *tterm-state-iso2022-esc*
      :us-ascii :jisx0208 :jisx0201-kana :jisx0212)
     ("sjis-with-esc" *tterm-state-sjis-with-esc* *tterm-state-iso2022-esc*
@@ -854,6 +855,9 @@
 ;  (setq tterm-insert-mode nil)
 
   (make-local-variable 'tterm-lead-char)
+
+  (make-local-variable 'tterm-lead-char-2)
+  (make-local-variable 'tterm-lead-char-3)
 
   (make-local-variable 'tterm-iso2022-g)
   (make-local-variable 'tterm-iso2022-gl)
@@ -3748,3 +3752,80 @@
 ;;      ECMA-35:1994 Character Code Structure and Extension Techniques
 ;;      ECMA-48:1991 Control Functions for Coded Character Sets
 ;;
+
+
+(tterm-define-state '*tterm-state-utf8*
+                    '(*tterm-state-neutral*
+                      (#xa0 . tterm-nul)
+                      ((#xc2 . #xdf) . tterm-utf8-2_2)
+                      ((#xe0 . #xef) . tterm-utf8-3_2)
+                      ((#xf0 . #xf7) . tterm-utf8-4_2)))
+(tterm-define-state '*tterm-state-utf8-2_2*
+                    '((* . tterm-utf8-invalid)
+                      (*TELNET-CMD-IAC* . tterm-iac)
+                      ((#x80 . #xbf) . tterm-utf8-insert-2)))
+(tterm-define-state '*tterm-state-utf8-3_2*
+                    '((* . tterm-utf8-invalid)
+                      (*TELNET-CMD-IAC* . tterm-iac)
+                      ((#x80 . #xbf) . tterm-utf8-3_3)))
+(tterm-define-state '*tterm-state-utf8-3_3*
+                    '((* . tterm-utf8-invalid)
+                      (*TELNET-CMD-IAC* . tterm-iac)
+                      ((#x80 . #xbf) . tterm-utf8-insert-3)))
+(tterm-define-state '*tterm-state-utf8-4_2*
+                    '((* . tterm-utf8-invalid)
+                      (*TELNET-CMD-IAC* . tterm-iac)
+                      ((#x80 . #xbf) . tterm-utf8-4_3)))
+(tterm-define-state '*tterm-state-utf8-4_3*
+                    '((* . tterm-utf8-invalid)
+                      (*TELNET-CMD-IAC* . tterm-iac)
+                      ((#x80 . #xbf) . tterm-utf8-4_4)))
+(tterm-define-state '*tterm-state-utf8-4_4*
+                    '((* . tterm-utf8-invalid)
+                      (*TELNET-CMD-IAC* . tterm-iac)
+                      ((#x80 . #xbf) . tterm-utf8-insert-4)))
+(defun tterm-utf8-2_2 ()
+  "第1バイトが0xc2~dfの場合"
+  (setf tterm-state *tterm-state-utf8-2_2*)
+  (setf tterm-lead-char *tterm-char*))
+(defun tterm-utf8-insert-2 ()
+  "第1バイトが0xc2~df、第2バイトが0x80~0xbfの場合"
+  (setf tterm-state tterm-state-neutral)
+  (tterm-write-char (unicode-char (logior (ash (logand (char-code tterm-lead-char) #x1f) 6)
+                                          (logand (char-code *tterm-char*) #x3f)))))
+(defun tterm-utf8-3_2 ()
+  "第1バイトが0xe0~efの場合"
+  (setf tterm-state *tterm-state-utf8-3_2*)
+  (setf tterm-lead-char *tterm-char*))
+(defun tterm-utf8-3_3 ()
+  "第1バイトが0xe0~ef、第2バイトが0x80~0xbfの場合"
+  (setf tterm-state *tterm-state-utf8-3_3*)
+  (setf tterm-lead-char-2 *tterm-char*))
+(defun tterm-utf8-insert-3 ()
+  "第1バイトが0xe0~ef、第2バイトが0x80~0xbf、第3バイトが0x80~0xbfの場合"
+  (setf tterm-state tterm-state-neutral)
+  (tterm-write-char (unicode-char (logior (ash (logand (char-code tterm-lead-char) #x0f) 12)
+                                          (ash (logand (char-code tterm-lead-char-2) #x3f) 6)
+                                          (logand (char-code *tterm-char*) #x3f)))))
+(defun tterm-utf8-4_2 ()
+  "第1バイトが0xf0~f7の場合"
+  (setf tterm-state *tterm-state-utf8-4_2*)
+  (setf tterm-lead-char *tterm-char*))
+(defun tterm-utf8-4_3 ()
+  "第1バイトが0xf0~f7、第2バイトが0x80~0xbfの場合"
+  (setf tterm-state *tterm-state-utf8-4_3*)
+  (setf tterm-lead-char-2 *tterm-char*))
+(defun tterm-utf8-4_4 ()
+  "第1バイトが0xf0~f7、第2バイトが0x80~0xbf、第3バイトが0x80~0xbfの場合"
+  (setf tterm-state *tterm-state-utf8-4_4*)
+  (setf tterm-lead-char-3 *tterm-char*))
+(defun tterm-utf8-insert-4 ()
+  "第1バイトが0xf0~f7、第2バイトが0x80~0xbf、第3バイトが0x80~0xbf、第4バイトが0x80~0xbfの場合"
+  (setf tterm-state tterm-state-neutral)
+  (tterm-write-char (unicode-char (logior (ash (logand (char-code tterm-lead-char) #x07) 18)
+                                          (ash (logand (char-code tterm-lead-char-2) #x3f) 12)
+                                          (ash (logand (char-code tterm-lead-char-3) #x3f) 6)
+                                          (logand (char-code *tterm-char*) #x3f)))))
+(defun tterm-utf8-invalid ()
+  "不正文字の場合"
+  (setf tterm-state tterm-state-neutral))
