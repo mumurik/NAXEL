@@ -1,0 +1,119 @@
+/**
+ * $Id: changelog.css 226 2003-04-07 19:17:12Z torihat $
+ *
+ * CSS for changelog.html
+ *
+ */
+
+html * {
+  font-size: x-small;
+}
+
+body {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-indent: 0;
+  text-decoration: none;
+  letter-spacing: 0;
+  word-spacing: 0;
+  color: #000000;
+  background: #ffffff;
+  padding: 0;
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #000000;
+  background: transparent;
+  font-weight: bold;
+  text-align: left;
+  border: none;
+  margin-top: .3em;
+  margin-bottom: .3em;
+  padding: .3em;
+}
+
+h1 {
+  font-size: medium;
+  color: #000099;
+  background-color: #ececec;
+}
+
+h2 {
+  font-size: small;
+  color: #000099;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #999999;
+  /* background-color: #99ccff; */
+}
+
+ul li {
+  list-style-type: square;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+a {
+  text-decoration: none;
+  margin: 0.05em;
+  background: transparent;
+  padding: 1px;
+}
+
+a:link {
+  color: #0000ff;
+}
+
+a:visited {
+  color: #990066;
+}
+
+a:hover {
+  padding: 0;
+  border-style: outset;
+  border-width: 1px;
+  border-color: #999999;
+}
+
+a:active, a:focus {
+  padding: 0;
+  border-style: inset;
+  border-width: 1px;
+  border-color: #999999;
+}
+
+.date {
+  width: 100%;
+  text-align: right;
+  font-size: x-small;
+  font-color: #666666;
+}
+
+table {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #333333;
+  border-collapse: collapse;
+  empty-cells: show;
+  display: table;
+}
+
+th {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #333333;
+  font-weight: normal;
+  background-color: #cccccc;
+  text-align: center;
+  padding: .2em;
+}
+
+td {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #333333;
+  padding: .2em;
+}
