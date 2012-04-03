@@ -290,7 +290,7 @@
   (set-text-attribute (point)
 		      (progn
 			;(insert (format nil (format nil "~~~D@A" *board-title-width*) title))
-			(insert (format nil "~V@A" *board-title-width* title))
+			(insert (format nil "~VA" *board-title-width* title))
 			(point))
 		      'title
 		      :foreground *board-fgcolor-title*
@@ -300,7 +300,7 @@
   ;(insert (format nil (format nil "~~~D@A " width) name))
   (set-text-attribute (point)
 		      (progn
-			(insert (format nil "~6A" (format nil "(~3A)" num)))
+			(insert (format nil "~6@A" (format nil "(~3@A)" num)))
 			(point))
 		      'num
 		      :foreground *board-fgcolor-num*
@@ -309,7 +309,7 @@
   )
   (set-text-attribute (point)
 		      (progn
-			(insert (format nil "  ~V@A" *board-name-width* (format nil "[~A]" name)))
+			(insert (format nil "  ~VA" *board-name-width* (format nil "[~A]" name)))
 			(point))
 		      'name
 		      :foreground *board-fgcolor-name*
@@ -318,7 +318,7 @@
   )
   (set-text-attribute (point)
 		      (progn
-			(insert (format nil "~V@A"
+			(insert (format nil "~VA"
 					*board-date-width*
 					(if wtime
 					    (format nil "[~A]" (view-format-date wtime

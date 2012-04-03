@@ -126,7 +126,7 @@
   );3
   (set-text-attribute (point)
 		      (progn
-			(insert (format nil " ~15@A" (format nil "[~A]" (bookmark-category book))))
+			(insert (format nil " ~15A" (format nil "[~A]" (bookmark-category book))))
 			(point))
 		      'name
 		      :foreground *bookmark-fgcolor-category*
@@ -135,7 +135,7 @@
   )
   (set-text-attribute (point)
 		      (progn
-			(insert (format nil " ~15@A" (format nil "[~A]" (bookmark-board book))))
+			(insert (format nil " ~15A" (format nil "[~A]" (bookmark-board book))))
 			(point))
 		      'tracking
 		      :foreground *bookmark-fgcolor-board*
@@ -144,7 +144,7 @@
   )
   (set-text-attribute (point)
 		      (progn
-			(insert (format nil "~60@A" (bookmark-title book)))
+			(insert (format nil "~60A" (bookmark-title book)))
 			(point))
 		      'title
 		      :foreground *bookmark-fgcolor-title*

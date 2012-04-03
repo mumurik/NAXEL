@@ -268,7 +268,7 @@
 (defun toggle ()
   (interactive)
   (if (eq *pframe-name*
-	  (ed::pseudo-frame-name ed::*current-pseudo-frame*))
+	  (ed::selected-pseudo-frame-name))
       (hide)
     (restore)))
 

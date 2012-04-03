@@ -597,12 +597,12 @@
     (when add
       (setq str (concat str "V‚µ‚¢”Â\n"))
       (dolist (tmp (reverse add))
-	(setq str (format nil "~A  ~10@A: ~A~%" str (cdr tmp) (car tmp))))
+	(setq str (format nil "~A  ~10A: ~A~%" str (cdr tmp) (car tmp))))
       (setq str (concat str "\n")))
     (when del
       (setq str (concat str "Á‚¦‚½”Â\n"))
       (dolist (tmp (reverse del))
-	(setq str (format nil "~A   ~10@A: ~A~%" str (cdr tmp) (car tmp))))
+	(setq str (format nil "~A   ~10A: ~A~%" str (cdr tmp) (car tmp))))
       (setq str (concat str "\n")))
     (when diff
       (setq str (concat str "ˆÚ“]\n"))
@@ -884,7 +884,7 @@
 (defun menu-insert-category (name open-p)
   (set-text-attribute (point)
 		      (progn
-			(insert (format nil "~22@A~%"
+			(insert (format nil "~22A~%"
 					(format nil "~:[+~;-~][~A]" open-p name)))
 			(point))
 		      'name
@@ -895,7 +895,7 @@
 (defun menu-insert-menu (name)
   (set-text-attribute (point)
 		      (progn
-			(insert (format nil "  ~20@A~%" name))
+			(insert (format nil "  ~20A~%" name))
 			(point))
 		      'board
 		      :foreground *menu-fgcolor*

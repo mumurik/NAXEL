@@ -119,11 +119,11 @@
       (when (setq func (popup-menu-func (popup-menu-list buffer-mode)))
 	(setq menu (funcall func))
 	(setf (popup-menu-menu (popup-menu-list buffer-mode)) menu)))
-    (or menu *app-popup-menu*)))
+    (or menu (get-app-popup-menu (selected-frame)))))
 
 (defun popup-menu-add (menu)
   (add-menu-separator menu nil)
-  (add-popup-menu menu *app-popup-menu* "その他")
+  (add-popup-menu menu (get-app-popup-menu (selected-frame)) "その他")
   (add-menu-separator menu nil)
   (add-popup-menu menu (popup-menu-bookmark) "ブックマーク")
   (add-popup-menu menu (popup-menu-history) "履歴")

@@ -2205,7 +2205,7 @@
     (message "バッファがないっす")
     (return-from thread-bar-func))
   (unless (eq *pframe-name*
-	     (ed::pseudo-frame-name ed::*current-pseudo-frame*))
+	      (ed::selected-pseudo-frame-name))
     (restore))
   (unless *thread-window*
     (if *board-window*
