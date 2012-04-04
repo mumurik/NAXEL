@@ -3,7 +3,7 @@
 ("url" . "https://github.com/mumurik/NAXEL")
 ("description" . "Network Archive for Xyzzy Extending Lisp.")
 ("packages"
- (("name" . "Browser.dll") ("version" . "1.1") ("author" . "mumurik765") ("file" . "browser-1.1.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/browser-1.1.zip") ("description" . "Browser.dllをスクラッチから書き直しました。") ("category" "Network") ("md5" . "870d27d3e63a45646187ab00e7a82a16") ("time" . 3542560022) ("depends") ("changes" . "browserexでクラッシュするのを修正。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "Browser.dll") ("version" . "1.1") ("author" . "mumurik765") ("file" . "browser-1.1.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/browser-1.1.zip") ("description" . "Browser.dllをスクラッチから書き直しました。") ("category" "Network") ("md5" . "a4adc3647fc83c21c1327102ad1cc75a") ("time" . 3542562710) ("depends") ("changes" . "browserexでクラッシュするのを修正。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
  (("name" . "tterm") ("version" . "0.35+1.0") ("author" . "YAMAMOTO Shinji <sinj@mb.neweb.ne.jp>") ("file" . "") ("src" . "https://github.com/downloads/DeaR/NAXEL/tterm-0.35_1.0.zip") ("description" . "ライセンス: MIT
 改変者: DeaR
 Telnet 端末です。
