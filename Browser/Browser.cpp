@@ -3,7 +3,7 @@
 
 class CBrowser {
 public:
-	CBrowser(void) {
+	CBrowser(void) : xpiHandle(NULL) {
 	}
 
 	int CreateWnd( HWND parent, int size)
@@ -25,6 +25,8 @@ public:
 
 	HWND GetWndHandle()
 	{
+		if(!xpiHandle)
+			return 0;
 		return wndIE;
 	}
 
@@ -74,6 +76,8 @@ extern "C" {
 
 BROWSER_API HWND WINAPI GetHwnd()
 { 
+	if(!gApp.browser)
+		return 0;
 	return gApp.browser->GetWndHandle(); 
 }
 
@@ -83,9 +87,9 @@ BROWSER_API int WINAPI create( HWND parent, void *xpiArgs)
 	CRect r;
 	wnd.GetClientRect(&r);
 	int size = r.Width() /2;
-	return createex(parent, xpiArgs, size, XPIS_LEFT);
+	return createEx(parent, xpiArgs, size, XPIS_LEFT);
 }
-BROWSER_API int WINAPI createex( HWND parent, void* xpiArgs, int size, DWORD flag)
+BROWSER_API int WINAPI createEx( HWND parent, void* xpiArgs, int size, DWORD flag)
 { 
 	if (!xpiInit(xpiArgs))
 		return 0;
