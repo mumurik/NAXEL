@@ -4,6 +4,207 @@
 ("description" . "Network Archive for Xyzzy Extending Lisp.")
 ("packages"
  (("name" . "Browser.dll") ("version" . "1.1") ("author" . "mumurik765") ("file" . "browser-1.1.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/browser-1.1.zip") ("description" . "Browser.dllをスクラッチから書き直しました。") ("category" "Network") ("md5" . "a4adc3647fc83c21c1327102ad1cc75a") ("time" . 3542562710) ("depends") ("changes" . "browserexでクラッシュするのを修正。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "luna") ("version" . "0.1") ("author" . "miyamuko") ("file" . "luna.zip") ("src" . "http://miyamuko.s56.xrea.com/xyzzy/archives/luna.zip") ("description" . "Windows XP スタイルで xyzzy を表示する。") ("category" "Graphics/Sound") ("md5" . "b3f171cddc449bb46c7e48e7ae3540e8") ("time" . 3301057714) ("depends") ("changes" . "仕切りなおしリリース") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "properties-mode") ("version" . "0.1") ("author" . "miyamuko") ("file" . "properties-mode.zip") ("src" . "http://miyamuko.s56.xrea.com/xyzzy/archives/properties-mode.zip") ("description" . "Java の properties ファイルを読み書きする。") ("category" "Development") ("md5" . "65d21a67d5299d956e71c25e0e0c9852") ("time" . 3301057729) ("depends") ("changes" . "仕切りなおしリリース") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "xyzzydiff") ("version" . "0.1") ("author" . "miyamuko") ("file" . "xyzzydiff.zip") ("src" . "http://miyamuko.s56.xrea.com/xyzzy/archives/xyzzydiff.zip") ("description" . "コマンドラインから diff する。") ("category" "Development") ("md5" . "d764dbbac7381fd43321e23d7104cfc0") ("time" . 3301058729) ("depends") ("changes" . "初期リリース") ("notice" . "") ("load-after-install" . "site-lisp/xyzzydiff/install.l") ("load-before-uninstall" . ""))
+ (("name" . "xyzzytail") ("version" . "0.1") ("author" . "miyamuko") ("file" . "xyzzytail.zip") ("src" . "http://miyamuko.s56.xrea.com/xyzzy/archives/xyzzytail.zip") ("description" . "コマンドラインから tail-f する。") ("category" "Utilities") ("md5" . "18ea1e53e8b81bcfb5582911dffa8210") ("time" . 3301058739) ("depends") ("changes" . "初期リリース") ("notice" . "") ("load-after-install" . "site-lisp/xyzzytail/install.l") ("load-before-uninstall" . ""))
+ (("name" . "cygwin-mount") ("version" . "1.1.0") ("author" . "MIYAMUKO Katsuyuki") ("file" . "cygwin-mount.zip") ("src" . "http://miyamuko.s56.xrea.com/xyzzy/archives/cygwin-mount.zip") ("description" . "cygwin-mount - Cygwin のパスを指定してファイルを開く
+http://miyamuko.s56.xrea.com/xyzzy/cygwin-mount/intro.htm") ("category" "Utilities" "File Systems") ("md5" . "f94a47130167ea4edd58ef4d9da6c48f") ("time" . 3424845911) ("depends") ("changes" . "cygwin-mount 1.1.0 リリース!
+
+: 新規機能
+
+    * (cygmount-point-info): path 引数で mount 情報を取得するパスを指定できるようにした
+
+: 非互換を含む変更点
+
+    * なし
+
+: バグ修正
+
+    * なし
+
+: その他
+
+    * ライセンスファイルを同梱
+") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "json") ("version" . "0.1.2") ("author" . "MIYAMUKO Katsuyuki") ("file" . "json.zip") ("src" . "http://miyamuko.s56.xrea.com/xyzzy/archives/json.zip") ("description" . "json - 安全で高速な JSON パーサ
+http://miyamuko.s56.xrea.com/xyzzy/json/intro.htm
+
+json は xyzzy Lisp のみで実装した JSON パーサです。
+json-syck より高速でかつ外部ライブラリを利用していないので安全です。
+") ("category" "Development" "Libraries") ("md5" . "1fa971cd431488f846b08f6805962f36") ("time" . 3424844545) ("depends") ("changes" . "json 0.1.2 リリース!
+
+: 新規機能
+
+    * なし
+
+: 非互換を含む変更点
+
+    * なし
+
+: バグ修正
+
+    * なし
+
+: その他
+
+    * ライセンスファイルを同梱
+") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "grep-a-lot") ("version" . "1.1.0") ("author" . "MIYAMUKO Katsuyuki") ("file" . "grep-a-lot.zip") ("src" . "http://miyamuko.s56.xrea.com/xyzzy/archives/grep-a-lot.zip") ("description" . "grep-a-lot は grep バッファの名前を自動的に変更して、
+grep バッファを複数保存できるようにします。
+
+grep バッファのバッファ名には以下のように検索キーワードが含まれます。
+
+  *grep:<foo>*
+  *ggrep:<tiger AND bunny>*
+") ("category" "Editing" "Utilities") ("md5" . "e2bb7ca126796a828ea292cfa3607f99") ("time" . 3521605470) ("depends") ("changes" . "* 1.1.0 リリース!
+  - outline-tree2 との親和性を高めた (#2)
+    - outline-tree2 でグループ化されるようにバッファ名を変更
+      - 変更前: *grep*<キーワード>
+      - 変更後: *grep:<キーワード>*
+    - バッファ名変更後に outline-tree2 のノード名も更新するようにした
+  - fggrep で検索文字列が取得できていなかったのを修正
+") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "xl-ppcre") ("version" . "1.0.1") ("author" . "MIYAMUKO Katsuyuki") ("file" . "xl-ppcre.zip") ("src" . "http://miyamuko.s56.xrea.com/xyzzy/archives/xl-ppcre.zip") ("description" . "xl-ppcre は CL-PPCRE ( http://weitz.de/cl-ppcre/ ) を xyzzy に移植したものです。
+
+xl-ppcre は以下の機能を提供しています。
+
+* Perl 互換の正規表現が使えます (一部制限があります)
+* シングルラインモード、マルチラインモード、拡張正規表現
+* cl-ppcre 互換の API
+
+xl-ppcre は以下の機能は提供していません。
+
+* 肯定先読み、否定先読み、埋め込みコードなどは処理できません
+  * xl-ppcre は Perl 互換の正規表現を xyzzy 用に変換するのみで、
+    正規表現エンジンは xyzzy 組み込みのものを利用しているためです
+* 正規表現リテラル (リーダーマクロ)はありません
+* replace-string や replace-dialog で Perl 互換の正規表現の利用はできません
+* cl-ppcre の parse tree 形式での指定はできません
+* ユニコードプロパティは利用できません
+") ("category" "Text Processing" "Libraries") ("md5" . "4a97ae56b7e1c32129a4ace660a88980") ("time" . 3525502199) ("depends") ("changes" . "=== 2011/09/20
+
+* 1.0.1 リリース!
+  * register-groups-bind, do-register-groups のインデントスタイルを
+    multiple-value-bind のようにした
+  * \"xl-\" を付けなくても (require \"ppcre\") でロードできるようにした
+") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "xl-interpol") ("version" . "1.0.2") ("author" . "MIYAMUKO Katsuyuki") ("file" . "xl-interpol.zip") ("src" . "http://miyamuko.s56.xrea.com/xyzzy/archives/xl-interpol.zip") ("description" . "xl-interpol は CL-INTERPOL ( http://weitz.de/cl-interpol/ ) を xyzzy に移植したものです。
+
+xl-interpol は以下の機能を提供しています。
+
+* 変数や式を文字列に埋め込める
+* 正規表現リテラル
+* ユニコード文字 (\\N{HIRAGANA LETTER A})
+") ("category" "Text Processing" "Libraries") ("md5" . "a7f7b0806cb120c08279bcfbc095d69d") ("time" . 3526258386) ("depends" "xl-ppcre" "ansi-loop") ("changes" . "=== 2011/09/29
+
+* 1.0.2 リリース!
+  * xl-interpol 独自部分のライセンスが MIT になっていたので BSD で統一
+  * ansi-loop を使って cl-interpol オリジナルのコードに戻した
+") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "xl-alexandria") ("version" . "0.0.2") ("author" . "MIYAMUKO Katsuyuki") ("file" . "xl-alexandria.zip") ("src" . "http://miyamuko.s56.xrea.com/xyzzy/archives/xl-alexandria.zip") ("description" . "xl-alexandria は Common Lisp の Alexandria ( http://common-lisp.net/project/alexandria/ ) を
+を xyzzy に移植したものです。
+
+Alexandria は巨大なユーティリティ集です。
+実践 Common Lisp や OnLisp に載っていたり、自分で書いたことがあるような
+関数・マクロが大量に詰まっています。
+") ("category" "Libraries" "Lisp") ("md5" . "d7df943941f93f6869638346753451f0") ("time" . 3535185958) ("depends" "setf-values" "ansi-loop" "ansify") ("changes" . "xl-alexandria 0.0.2 リリース!
+
+  * parse-body が interactive 式も取り出せるようになりました (by @bowbow99)。
+
+    (ansify:destructuring-bind (defun name lambda-list &rest body)
+        '(defun foobar-region (start end)
+          \"foobar region\"
+          (interactive \"*r\")
+          (delete-region start end)
+          (insert \"foobar\"))
+      (alexandria:parse-body body :documentation t :interactive t))
+    ;=> ((delete-region start end) (insert \"foobar\"))
+    ;   nil
+    ;   \"foobar region\"
+    ;   (interactive \"*r\")
+
+  * symbolicate が動作していなかったのを修正
+
+    (alexandria:symbolicate \"prefix-\" :foo)
+    ;=> prefix-foo
+
+  * upstream の変更を取り込み (3eacfac87b2...77b219a8361)
+    https://github.com/miyamuko/xl-alexandria/compare/3eacfac87b27654f7ca9eeaf1ce40344b8136b03...77b219a8361b9549aeb8941afc945fa2e3c84eb9
+") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "xml-http-request") ("version" . "1.3.2") ("author" . "MIYAMUKO Katsuyuki") ("file" . "xml-http-request.zip") ("src" . "http://miyamuko.s56.xrea.com/xyzzy/archives/xml-http-request.zip") ("description" . "xml-http-request - 非同期 HTTP 通信ライブラリ
+http://miyamuko.s56.xrea.com/xyzzy/xml-http-request/intro.htm") ("category" "Network" "Libraries" "Development") ("md5" . "3ac01d65997774382b8b406d46fdfa40") ("time" . 3536910309) ("depends") ("changes" . "### 2012-01-30 / 1.3.2
+
+xml-http-request 1.3.2 リリース!
+
+#### 新規機能
+
+  * なし
+
+#### 非互換を含む変更点
+
+  * なし
+
+#### バグ修正
+
+  * xhr-(get|post)-async で :key に xhr-response-text とか指定してると
+    :onabort の起動時にこける問題を修正
+    (Reported by @youz)
+
+#### その他
+
+  * なし
+") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "xl-winhttp") ("version" . "1.0.0") ("author" . "MIYAMUKO Katsuyuki") ("file" . "xl-winhttp.zip") ("src" . "http://miyamuko.s56.xrea.com/xyzzy/archives/xl-winhttp.zip") ("description" . "xl-winhttp は [Windows HTTP Services](http://msdn.microsoft.com/en-us/library/windows/desktop/aa384273.aspx)
+を利用した HTTP 通信を行うためのライブラリです。
+
+[xml-http-request](http://miyamuko.s56.xrea.com/xyzzy/xml-http-request/intro.htm)
+と比べて低レベルなライブラリですが、xml-http-request では取得出来なかった以下のようなデータも取得可能です。
+
+  * チャンク形式のエンコーディング (Transfer-Encoding: chunked)
+  * バイナリファイルの取得
+  * 文字エンコーディングを自動的に変換しないため、charset などが不適切でも文字化けしません
+
+Proxy や Basic/Digest 認証、SSL、非同期通信などは xml-http-request と同様に対応しています。
+") ("category" "Network" "Libraries" "Development") ("md5" . "7c848750ad0af9cea30c00a8b3d3b40d") ("time" . 3537688440) ("depends" "xl-alexandria" "ansi-loop" "ansify" "setf-values") ("changes" . "初版リリース") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "http-client") ("version" . "1.0.0") ("author" . "MIYAMUKO Katsuyuki") ("file" . "http-client.zip") ("src" . "http://miyamuko.s56.xrea.com/xyzzy/archives/http-client.zip") ("description" . "http-client は [xl-winhttp] を利用した HTTP クライアント・ライブラリです。
+Proxy、Basic/Digest 認証、SSL、Cookie、非同期通信などをサポートしています。
+
+[xml-http-request] と比較したメリット・デメリットはそれぞれ以下のとおりです。
+
+  * メリット
+    * ストリーミングに対応している (Transfer-Encoding: chunked)
+    * Content-Type の charset が不明な場合でも文字化けしない
+    * バイナリ・データの送受信に対応している
+    * ファイル・ダウンロードに対応している
+    * ファイル・アップロードに対応している (multipart/form-data)
+    * IE とセッションが分離されているので、IE のキャッシュやクッキーの影響を受けない
+
+  * デメリット
+    * IE とは別にプロキシを WinHTTP で設定しておく必要がある
+    * IE とセッションが分離されているので、自前でログイン処理などを実装する必要がある
+    * クッキーは xyzzy を再起動するとすべて消える
+    * 認証情報は毎回指定する必要がある
+      - 自動的に認証ダイアログがでない
+      - 認証情報のキャッシュは行わない
+    * 圧縮転送に対応していない (Content-Encoding: gzip)
+    * 受信処理を xyzzy Lisp で行うため若干遅い
+
+  [xl-winhttp]: http://miyamuko.s56.xrea.com/xyzzy/xl-winhttp/intro.htm
+  [xml-http-request]: http://miyamuko.s56.xrea.com/xyzzy/xml-http-request/intro.htm
+") ("category" "Network" "Libraries" "Development") ("md5" . "6b6fc035942729dc948c514bd07a61a9") ("time" . 3537688464) ("depends" "xl-winhttp" "xl-alexandria" "ansi-loop" "ansify" "setf-values") ("changes" . "初版リリース") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "xl-open-uri") ("version" . "1.0.0") ("author" . "MIYAMUKO Katsuyuki") ("file" . "xl-open-uri.zip") ("src" . "http://miyamuko.s56.xrea.com/xyzzy/archives/xl-open-uri.zip") ("description" . "xl-open-uri は Ruby の [open-uri] とほぼ同様の機能を xyzzy Lisp に実装したライブラリです。
+HTTP や FTP に簡単にアクセスするための機能を提供します。
+
+デフォルトでサポートしている URL スキームは http, https, ftp, data です。
+また、URL スキームを追加するための API も公開しています。
+
+Ruby の open-uri では HTTP GET および FTP のダウンロードしか対応していませんが、
+xl-open-uri では任意の HTTP メソッドの送信が可能です。
+また FTP のアップロードにも対応しています。
+
+  [open-uri]: http://doc.ruby-lang.org/ja/1.9.3/library/open=2duri.html
+") ("category" "Network" "Libraries" "Development") ("md5" . "3243520bd298368c9bd6afe7c55a12e5") ("time" . 3537946975) ("depends" "http-client" "xl-winhttp" "xl-alexandria" "ansi-loop" "ansify" "setf-values") ("changes" . "初版リリース") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
  (("name" . "ac-mode") ("md5" . "b6780b9437452eafe588cb4498b94447") ("src" . "http://white.s151.xrea.com/wiki/index.php?plugin=attach&refer=script%2Fac-mode&openfile=ac-mode-2007.12.21.zip") ("version" . "2007.12.21") ("author" . "snj14") ("file" . "ac-mode-2007.12.21.zip") ("description" . " - paren,rv-region,セレクションの有無,直前に実行したコマンド を考慮したインデント\n - snippetの展開\n - (URI|ファイル名|abbrev|lispの関数,変数|バッファ内の関数,変数|Keyword|XTAGS|dabbrev)\n   のインクリメンタルな補完\n をC-i(TAB)のみで行えるようにするマイナーモードです。\n snippetの展開には別途snippet.lが必要です。\n\n インテリジェント補完コマンド ac-mode\n http://taiyaki.org/elisp/ac-mode/\n の説明から想像で実装し、便利そうな機能を追加したものです。\n \n \n また、いくつかの補完には専用のコマンドもあり、\n 文字を入力せずに補完することや、\n (complete+が入っていれば)部分一致/スキップマッチも可能です。\n ") ("time" . 3407169979) ("depends" nil) ("category" "Editing" ) ("changes" . "補完はカーソルが単語の上 or 末尾にあるときのみにした") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
  (("name" . "ansi-loop") ("version" . "1.0.1") ("author" . "MIYAMUKO Katsuyuki") ("file" . "ansi-loop.zip") ("src" . "http://miyamuko.s56.xrea.com/xyzzy/archives/ansi-loop.zip") ("description" . "ansi-loop は Macintosh Common Lisp ( http://code.google.com/p/mcl/ ) の
 loop マクロ (loop.lisp と extended-loop.lisp) を xyzzy に移植したものです。
