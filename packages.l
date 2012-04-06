@@ -4,6 +4,122 @@
 ("description" . "Network Archive for Xyzzy Extending Lisp.")
 ("packages"
  (("name" . "Browser.dll") ("version" . "1.1") ("author" . "mumurik765") ("file" . "browser-1.1.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/browser-1.1.zip") ("description" . "Browser.dllをスクラッチから書き直しました。") ("category" "Network") ("md5" . "a4adc3647fc83c21c1327102ad1cc75a") ("time" . 3542562710) ("depends") ("changes" . "browserexでクラッシュするのを修正。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "clickable-uri") ("version" . "2005.10.08") ("author" . "OHKUBO Hiroshi") ("file" . "clickable-uri-20051008.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/clickable-uri-20051008.zip") ("description" . "左ダブルクリックによる WEB ブラウザ、メーラー等の起動を可能にします。
+URI (Uniform Resource Identifier) 強調表示も行います。") ("category" "Miscellaneous") ("md5" . "6459dda4f7e91ffde0bac8b6f14a3138") ("time" . 3337729390) ("depends") ("changes" . "・file: の場合そのまま shell-execute に渡すように変更。
+・メールアドレスを変更。
+・ライセンス条項(修正BSDライセンス)を記載。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "ggrep") ("version" . "2005.10.08") ("author" . "OHKUBO Hiroshi") ("file" . "ggrep-20051008.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/ggrep-20051008.zip") ("description" . "Grep 類似の行指向検索を行います。
+
+  □検索方法
+  ・複数検索パターン指定 AND/OR 検索
+  ・一致/不一致検索
+  ・バッファ/ファイル単位絞込み検索
+      - 前回マッチしたバッファ/ファイルが再検索の対象
+  ・行単位絞込み検索
+      - 前回マッチした行が再検索の対象
+      - 検索パターンが複数行に渡ってマッチする場合でも絞込み検索可能
+  ・エンコード指定検索 (ファイル)
+  ・シンタックス指定検索 (バッファ)
+
+  □検索対象
+  ・カレントバッファ指定検索
+  ・全表示バッファ指定検索
+  ・複数ディレクトリ指定検索
+  ・複数ファイル指定検索
+  ・正規表現での複数バッファ指定検索
+
+  □出力方法
+  ・バッファ/ファイル名、行番号なしの出力
+  ・バッファ/ファイル名のみの出力
+  ・フルパス名での出力
+
+  □検索設定の保存
+  ・検索条件設定の保存、読込、削除(ダイアログ使用時)
+
+  □提供コマンド
+  ┏━━━━━━━┯━━━━┯━━━━━━━━━┯━━━━━━━━┓
+  ┃コマンド名    │パターン│対象              │対象(C-u)       ┃
+  ┃              ├────┴─────────┴────────┨
+  ┃              │説明                                          ┃
+  ┣━━━━━━━┿━━━━┯━━━━━━━━━┯━━━━━━━━┫
+  ┃ggrep         │正規表現│バッファリスト    │カレントバッファ┃
+  ┃              ├────┴─────────┴────────┨
+  ┃              │AND/OR 検索                                   ┃
+  ┣━━━━━━━┿━━━━┯━━━━━━━━━┯━━━━━━━━┫
+  ┃fggrep        │文字列  │バッファリスト    │カレントバッファ┃
+  ┃              ├────┴─────────┴────────┨
+  ┃              │AND/OR 検索                                   ┃
+  ┣━━━━━━━┿━━━━┯━━━━━━━━━┯━━━━━━━━┫
+  ┃ggrep-and     │正規表現│バッファリスト    │カレントバッファ┃
+  ┃              ├────┴─────────┴────────┨
+  ┃              │AND 検索                                      ┃
+  ┣━━━━━━━┿━━━━┯━━━━━━━━━┯━━━━━━━━┫
+  ┃fggrep-and    │文字列  │バッファリスト    │カレントバッファ┃
+  ┃              ├────┴─────────┴────────┨
+  ┃              │AND 検索                                      ┃
+  ┣━━━━━━━┿━━━━┯━━━━━━━━━┯━━━━━━━━┫
+  ┃ggrep-or      │正規表現│バッファリスト    │カレントバッファ┃
+  ┃              ├────┴─────────┴────────┨
+  ┃              │OR 検索                                       ┃
+  ┣━━━━━━━┿━━━━┯━━━━━━━━━┯━━━━━━━━┫
+  ┃fggrep-or     │文字列  │バッファリスト    │カレントバッファ┃
+  ┃              ├────┴─────────┴────────┨
+  ┃              │OR 検索                                       ┃
+  ┣━━━━━━━┿━━━━┯━━━━━━━━━┯━━━━━━━━┫
+  ┃ggrep-narrow  │正規表現│grep 結果バッファ │                ┃
+  ┃              ├────┴─────────┴────────┨
+  ┃              │絞込み検索(バッファからは行番号情報のみ取得)  ┃
+  ┣━━━━━━━┿━━━━┯━━━━━━━━━┯━━━━━━━━┫
+  ┃fggrep-narrow │文字列  │grep 結果バッファ │                ┃
+  ┃              ├────┴─────────┴────────┨
+  ┃              │絞込み検索(バッファからは行番号情報のみ取得)  ┃
+  ┣━━━━━━━┿━━━━┯━━━━━━━━━┯━━━━━━━━┫
+  ┃xggrep        │正規表現│ディレクトリ      │                ┃
+  ┃              ├────┴─────────┴────────┨
+  ┃              │複数ディレクトリ指定検索                      ┃
+  ┣━━━━━━━┿━━━━┯━━━━━━━━━┯━━━━━━━━┫
+  ┃zggrep        │正規表現│ファイル          │                ┃
+  ┃              ├────┴─────────┴────────┨
+  ┃              │複数ファイル指定検索                          ┃
+  ┣━━━━━━━┿━━━━┯━━━━━━━━━┯━━━━━━━━┫
+  ┃ggrep-contents│正規表現│カレントバッファ  │指定バッファ    ┃
+  ┃              ├────┴─────────┴────────┨
+  ┃              │絞込み検索(指定バッファ内コンテンツのみで検索)┃
+  ┣━━━━━━━┿━━━━┯━━━━━━━━━┯━━━━━━━━┫
+  ┃ggrep-buffer  │正規表現│カレントバッファ  │指定バッファ    ┃
+  ┃              ├────┴─────────┴────────┨
+  ┃              │ggrep / ggrep-narrow / ggrep-contents         ┃
+  ┣━━━━━━━┿━━━━┯━━━━━━━━━┯━━━━━━━━┫
+  ┃ggrep-detail  │        │                  │                ┃
+  ┃              ├────┴─────────┴────────┨
+  ┃              │minibuffer から全てを指定して検索             ┃
+  ┣━━━━━━━┿━━━━┯━━━━━━━━━┯━━━━━━━━┫
+  ┃ggrep-dialog  │        │                  │                ┃
+  ┃              ├────┴─────────┴────────┨
+  ┃              │dialog から全てを指定して検索                 ┃
+  ┗━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━┛") ("category" "Editing") ("md5" . "f517f13b81b096319bdddf1f3e2d9299") ("time" . 3337730879) ("depends") ("changes" . "・メールアドレスを変更。
+・ライセンス条項(修正BSDライセンス)を記載。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . "site-lisp/ni-before-uninstall/misc_notes/ggrep.l"))
+ (("name" . "sort-line") ("version" . "2005.10.08") ("author" . "OHKUBO Hiroshi") ("file" . "sort-line-20051008.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/sort-line-20051008.zip") ("description" . "任意のカラム以降をキーとして、バッファ全体／選択範囲の行のソートを
+行います。") ("category" "Text Processing") ("md5" . "0d336221d03200da7f33b1140ee57d61") ("time" . 3337733132) ("depends") ("changes" . "・メールアドレスを変更。
+・ライセンス条項(修正BSDライセンス)を記載。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . "site-lisp/ni-before-uninstall/misc_notes/sort-line.l"))
+ (("name" . "mayu-mode") ("version" . "0.0.0.6") ("author" . "OHKUBO Hiroshi") ("file" . "mayu-0.0.0.6.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/mayu-0.0.0.6.zip") ("description" . "「窓使いの憂鬱」設定ファイル編集モード") ("category" "Editing") ("md5" . "1cd21dd230cdb16b0d85740e037465d5") ("time" . 3337739053) ("depends") ("changes" . "・「窓使いの憂鬱」ver. 3.30 付属の mayu-mode.el のキーワードに準拠。
+・メールアドレスを変更。
+・ライセンス条項(修正BSDライセンス)を記載。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "bat-mode") ("version" . "0.0.0.4") ("author" . "OHKUBO Hiroshi") ("file" . "bat-0.0.0.4.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/bat-0.0.0.4.zip") ("description" . "バッチファイル編集モード") ("category" "Editing") ("md5" . "d50999698bc298bbaf6c4ba6107f42e5") ("time" . 3337739210) ("depends") ("changes" . "・HIE さんに 2002/10/17 に教えていただいていた typo の修正漏れを修正。
+・メールアドレスを変更。
+・ライセンス条項(修正BSDライセンス)を記載。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "ini-mode") ("version" . "0.0.0.4") ("author" . "OHKUBO Hiroshi") ("file" . "ini-0.0.0.4.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/ini-0.0.0.4.zip") ("description" . "INIファイル編集モード") ("category" "Editing") ("md5" . "38b9a00b55b2610507e85e947efab79d") ("time" . 3337739353) ("depends") ("changes" . "・メールアドレスを変更。
+・ライセンス条項(修正BSDライセンス)を記載。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "win-window") ("version" . "2005.10.08") ("author" . "OHKUBO Hiroshi") ("file" . "win-window-20051008.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/win-window-20051008.zip") ("description" . "Windows の Window を操作します。") ("category" "Libraries") ("md5" . "4bd7fc79df079917368f6e52cf2989f5") ("time" . 3337740003) ("depends") ("changes" . "・GetWindowRect, IsZoomed の戻り値の型を int -> BOOL に変更
+・メールアドレスを変更。
+・ライセンス条項(修正BSDライセンス)を記載。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "insert-directory-tree") ("version" . "2005.10.19") ("author" . "OHKUBO Hiroshi") ("file" . "insert-directory-tree-20051019.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/insert-directory-tree-20051019.zip") ("description" . "ディレクトリツリーを出力します。") ("category" "Utilities") ("md5" . "d2cfa52052d33c825fa47993c950fe88") ("time" . 3338642628) ("depends") ("changes" . "・NANRI さんの拡張を取り込み。
+  *insert-directory-tree-leaf-function* に、file を引数にと
+  り文字列を返す関数を指定することで情報を付加出力する。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "color") ("version" . "2005.10.06") ("author" . "OHKUBO Hiroshi") ("file" . "color-20051006.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/color-20051006.zip") ("description" . "COLOR-NAME と RGB値 の対応リスト、操作関数を提供します。") ("category" "Libraries") ("md5" . "48424d119b6a6f0f4be88231387220f9") ("time" . 3343223908) ("depends") ("changes" . "・公開") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "treeview") ("version" . "2006.11.03") ("author" . "OHKUBO Hiroshi") ("file" . "treeview-20061103.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/treeview-20061103.zip") ("description" . "TreeView.dll を操作するライブラリ") ("category" "Libraries") ("md5" . "5fd5513a0b3a371d4c11cedf7454ccee") ("time" . 3371492676) ("depends" "treeview.dll(ver.1.03)" "win-window" "color") ("changes" . "・treeview-get-up-item 関数を修正。
+  連鎖して treeview-scan-treeview, treeview-isearch-forward,
+  treeview-isearch-backward などでの逆検索が正常動作に。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . "site-lisp/ni-before-uninstall/misc_notes/treeview.l"))
  (("name" . "bash-mode") ("version" . "0.2") ("author" . "TKI") ("file" . "bashmode.zip") ("src" . "http://www2.ocn.ne.jp/~cheerful/script/xyzzy/mode/bashmode.zip") ("description" . "bashスクリプトを書くモードです。shにもいいと思います.") ("category" "Editing") ("md5" . "726f725e4bd982a3bc11f94f062d76f9") ("time" . 3313565882) ("depends") ("changes" . "") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
  (("name" . "warn-if-read-1mb-over-file") ("version" . "2003/09/23") ("author" . "ろひの宮") ("file" . "warn-if-read-1mb-over-file_20061123.zip") ("src" . "http://rohinomiya.cocolog-nifty.com/xyzzy/warn-if-read-1mb-over-file_20061123.zip") ("description" . "1MB超のファイルを開こうとする時に警告と確認を行います。") ("category" "Miscellaneous") ("md5" . "dd5f5969ebed16f272d431120c138ce6") ("time" . 3373272072) ("depends") ("changes" . "・サイトが消えて失われていた分を再公開。（中身は変わっていません）") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
  (("name" . "AutoHotKey-mode") ("version" . "2006/11/27") ("author" . "ろひの宮") ("file" . "ahk-mode.zip") ("src" . "http://rohinomiya.cocolog-nifty.com/xyzzy/ahk-mode.zip") ("description" . "AutoHotKeyのスクリプトファイル(.ahk)を編集するためのモード。") ("category" "Editing") ("md5" . "2b96fa3d0d336fa73da9021f978ca29d") ("time" . 3373542328) ("depends") ("changes" . "大幅に修正。[TAB]でコマンド補完に変更。補完時にコマンド引数表示。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
