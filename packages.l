@@ -78,7 +78,6 @@
 ・ReFe1 非対応にした。
 ・オプションが指定できるようにした。
 ・その他いろいろ。") ("notice" . "ReFe2より前のバージョンには非対応。") ("load-after-install" . "") ("load-before-uninstall" . ""))
- (("name" . "gmark-select") ("md5" . "9a45835f673039f2546d9794a080b659") ("src" . "http://white.s151.xrea.com/wiki/index.php?plugin=attach&refer=script%2Fgmark-select&openfile=gmark-select-2007.02.22.zip") ("version" . "2007.02.22") ("author" . "shiro") ("file" . "gmark-select-2007.02.22.zip") ("description" . " 画面を分割してグローバルマークを選び、ジャンプしたり削除したりできます。") ("time" . 3381086398) ("depends" . nil) ("category" "Utilities" ) ("changes" . "gmark-select-search-forwardで次のバッファも探すようにした") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
  (("name" . "indent-to-token+")
   ("version" . "2008.01.07")
   ("author" . "bove-crach")
