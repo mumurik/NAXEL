@@ -4,6 +4,7 @@
 ("description" . "Network Archive for Xyzzy Extending Lisp.")
 ("packages"
  (("name" . "Browser.dll") ("version" . "1.1") ("author" . "mumurik765") ("file" . "browser-1.1.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/browser-1.1.zip") ("description" . "Browser.dllをスクラッチから書き直しました。") ("category" "Network") ("md5" . "a4adc3647fc83c21c1327102ad1cc75a") ("time" . 3542562710) ("depends") ("changes" . "browserexでクラッシュするのを修正。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "mercurial") ("version" . "0.2") ("author" . "Deecay") ("file" . "mercurial-20090215.zip") ("src" . "http://www.geocities.co.jp/Milano-Cat/2067/mercurial-20090215.zip") ("description" . "Minor mode for Mercurial VCS") ("category" "Miscellaneous") ("md5" . "b1c56b57d6dd16315856dab0b2281e8c") ("time" . 3443668075) ("depends") ("changes" . "1.1対応") ("notice" . "Please send me patches!") ("load-after-install" . "") ("load-before-uninstall" . ""))
  (("name" . "jaunte")
  ("version" . "0.00.01")
  ("file" . "jaunte-0.00.01.zip")
