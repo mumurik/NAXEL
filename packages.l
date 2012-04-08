@@ -4,6 +4,71 @@
 ("description" . "Network Archive for Xyzzy Extending Lisp.")
 ("packages"
  (("name" . "Browser.dll") ("version" . "1.1") ("author" . "mumurik765") ("file" . "browser-1.1.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/browser-1.1.zip") ("description" . "Browser.dllをスクラッチから書き直しました。") ("category" "Network") ("md5" . "a4adc3647fc83c21c1327102ad1cc75a") ("time" . 3542562710) ("depends") ("changes" . "browserexでクラッシュするのを修正。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "jaunte")
+ ("version" . "0.00.01")
+ ("file" . "jaunte-0.00.01.zip")
+ ("src" . "http://bowbow99.sakura.ne.jp/xyzzy/jaunte-0.00.01.zip")
+ ("description" . "画面内にヒントを散らかしてそこへジャンプ")
+ ("md5" . "39ce5368cd9e2f4603bcda1c28fa7f15")
+ ("time" . 3528031205)
+ ("depends" "ansify" "ansi-loop")
+ ("category" "Utilities")
+ ("changes" . "2011-10-20  Ver. 0.00.01
+========================
+- 折り返し表示を再現してなかったせいでズレてたのを修正
+
+2011-10-19  Ver. 0.00.00
+========================
+- こっそりと初リリース
+  - ブログ記事書いてたら バグ発見 > 修正> Ver.up コンボ発動
+"))
+ (("name" . "setf-values")
+ ("version" . "0.01.02")
+ ("file" . "setf-values-0.01.02.zip")
+ ("src" . "http://bowbow99.sakura.ne.jp/xyzzy/setf-values-0.01.02.zip")
+ ("description" . "setf で多値を扱えるようにする")
+ ("md5" . "14fc77ea9e2c5de718da8fe222bfb607")
+ ("time" . 3526381979)
+ ("category" "Lisp" "Libraries")
+ ("changes" . "\
+2011-09-30  bowbow99  <bowbow99@gmail.com>
+
+	* version 0.01.02
+
+2011-09-30  MIYAMUKO Katsuyuki  <miyamuko@gmail.com>
+
+	* (setf (values a b c) (progn (values 1 2 3))) とかしたときに、
+	  「変数が定義されていません: #:G2532」というエラーになっていた
+	  のを修正
+
+2011-09-30  bowbow99  <bowbow99@gmail.com>
+
+	* (setf 3 8) とかしたときに、(setq 3 8) に展開されてからエラーに
+	  なっていたのを展開時にエラー投げるようにした。
+
+2011-04-09  bowbow99  <bowbow99@gmail.com>
+
+	* version 0.01.01
+
+	* `values` の setf-expander が色々ダメだったのをマシにした。
+	  - subforms の setf-expansion を使うように。
+	  - store-form が設定した多値を返すように（最後の値だけ返ってた）。
+
+	* `setf-expand-1` で特定の場合に何かしてたのを削除
+	  - 1つ目（`macroexpand-1` して再帰する）は、どうせ `get-setf-method`
+	    が同じ事してくれるのでいらない。
+	  - 2つ目（`setf-update` プロパティがあったら、その関数の呼び出しに
+	    展開）は、`macrolet` で shadow した場合にもグローバルな setf-expander
+	    を使って展開することになってしまうので削除。
+
+2009-07-16  bowbow99  <bowbow99@gmail.com>
+
+	* MIT ライセンスを適用したらしい。
+
+2009-07-0?  bowbow99  <bowbow99@gmail.com>
+
+	* 始めたらしい。
+"))
  (("name" . "insert-directory-tree") ("version" . "2005.10.19") ("author" . "OHKUBO Hiroshi") ("file" . "insert-directory-tree-20051019.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/insert-directory-tree-20051019.zip") ("description" . "ディレクトリツリーを出力します。") ("category" "Utilities") ("md5" . "d2cfa52052d33c825fa47993c950fe88") ("time" . 3338642628) ("depends") ("changes" . "・NANRI さんの拡張を取り込み。
   *insert-directory-tree-leaf-function* に、file を引数にと
   り文字列を返す関数を指定することで情報を付加出力する。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
