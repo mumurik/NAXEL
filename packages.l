@@ -4,6 +4,11 @@
 ("description" . "Network Archive for Xyzzy Extending Lisp.")
 ("packages"
  (("name" . "Browser.dll") ("version" . "1.1") ("author" . "mumurik765") ("file" . "browser-1.1.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/browser-1.1.zip") ("description" . "Browser.dllをスクラッチから書き直しました。") ("category" "Network") ("md5" . "a4adc3647fc83c21c1327102ad1cc75a") ("time" . 3542562710) ("depends") ("changes" . "browserexでクラッシュするのを修正。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "ruby-refe") ("version" . "2.00") ("author" . "HIE Masahiro") ("file" . "ruby-refe_2.00.zip") ("src" . "http://hie.s64.xrea.com/xyzzy/pub/ruby-refe_2.00.zip") ("description" . "ruby-mode から，ReFe を参照します。") ("category" "Documentation") ("md5" . "f2485dc589402273e45380e529e1df51") ("time" . 3479122615) ("depends") ("changes" . "[Version 2.00] 2010-04-01 (木)
+・ReFe2 に対応した(はず)。
+・ReFe1 非対応にした。
+・オプションが指定できるようにした。
+・その他いろいろ。") ("notice" . "ReFe2より前のバージョンには非対応。") ("load-after-install" . "") ("load-before-uninstall" . ""))
  (("name" . "gmark-select") ("md5" . "9a45835f673039f2546d9794a080b659") ("src" . "http://white.s151.xrea.com/wiki/index.php?plugin=attach&refer=script%2Fgmark-select&openfile=gmark-select-2007.02.22.zip") ("version" . "2007.02.22") ("author" . "shiro") ("file" . "gmark-select-2007.02.22.zip") ("description" . " 画面を分割してグローバルマークを選び、ジャンプしたり削除したりできます。") ("time" . 3381086398) ("depends" . nil) ("category" "Utilities" ) ("changes" . "gmark-select-search-forwardで次のバッファも探すようにした") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
  (("name" . "indent-to-token+")
   ("version" . "2008.01.07")
