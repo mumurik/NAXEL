@@ -4,6 +4,9 @@
 ("description" . "Network Archive for Xyzzy Extending Lisp.")
 ("packages"
  (("name" . "Browser.dll") ("version" . "1.1") ("author" . "mumurik765") ("file" . "browser-1.1.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/browser-1.1.zip") ("description" . "Browser.dllをスクラッチから書き直しました。") ("category" "Network") ("md5" . "a4adc3647fc83c21c1327102ad1cc75a") ("time" . 3542562710) ("depends") ("changes" . "browserexでクラッシュするのを修正。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "insert-directory-tree") ("version" . "2005.10.19") ("author" . "OHKUBO Hiroshi") ("file" . "insert-directory-tree-20051019.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/insert-directory-tree-20051019.zip") ("description" . "ディレクトリツリーを出力します。") ("category" "Utilities") ("md5" . "d2cfa52052d33c825fa47993c950fe88") ("time" . 3338642628) ("depends") ("changes" . "・NANRI さんの拡張を取り込み。
+  *insert-directory-tree-leaf-function* に、file を引数にと
+  り文字列を返す関数を指定することで情報を付加出力する。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
  (("name" . "ruby-refe") ("version" . "2.00") ("author" . "HIE Masahiro") ("file" . "ruby-refe_2.00.zip") ("src" . "http://hie.s64.xrea.com/xyzzy/pub/ruby-refe_2.00.zip") ("description" . "ruby-mode から，ReFe を参照します。") ("category" "Documentation") ("md5" . "f2485dc589402273e45380e529e1df51") ("time" . 3479122615) ("depends") ("changes" . "[Version 2.00] 2010-04-01 (木)
 ・ReFe2 に対応した(はず)。
 ・ReFe1 非対応にした。
