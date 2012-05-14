@@ -1,0 +1,2 @@
+﻿layered-windowのライセンスはMITライセンスです。
+詳細はsite-lisp/layered-window/docs/MIT-LICENSEを参照ください。
