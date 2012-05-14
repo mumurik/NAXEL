@@ -3,6 +3,7 @@
 ("url" . "https://github.com/mumurik/NAXEL")
 ("description" . "Network Archive for Xyzzy Extending Lisp.")
 ("packages"
+ (("name" . "layered-window") ("version" . "1.0.1+1.0") ("author" . "MIYAMUKO Katsuyuki") ("file" . "layered-window_1.0.1_1.0.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/layered-window_1.0.1_1.0.zip") ("description" . "ライセンス: MIT\\n改変者: mumurik765") ("category" "Libraries" "Graphics/Sound") ("md5" . "a75b69ce204969f38983cb5f8647b795") ("time" . 3545986303) ("depends" "api") ("changes" . "") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
  (("name" . "api") ("version" . "2006.06.15") ("author" . "") ("file" . "api2006.06.15.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/api2006.06.15.zip") ("description" . ".") ("category") ("md5" . "b48655721bd930d71376bab39de5bfb3") ("time" . 3545974194) ("depends") ("changes" . "") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
  (("name" . "ggrep") ("version" . "2005.10.08+1.1") ("author" . "OHKUBO Hiroshi") ("file" . "ggrep-20051008_1.1.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/ggrep-20051008_1.1.zip") ("description" . "ライセンス: 修正BSD\\n改変者: mumurik765\\nGrep 類似の行指向検索を行います。
 
