@@ -26,7 +26,7 @@
 (defvar *layered-window-menu-name* "透明化(&T)")
 
 (defun layered-window-setup-menu ()
-  (let ((window-menu (get-menu *app-menu* 'ed::window)))
+  (let ((window-menu (get-menu (get-app-menu (selected-frame)) 'ed::window)))
     (when window-menu
       (delete-menu window-menu *layered-window-menu-tag*)
       (add-menu-item  window-menu
@@ -35,7 +35,7 @@
                       'toggle-layered-window
                       #'(lambda () (if (layered-window-p) :check))))))
 
-(if *app-menu*
+(if (get-app-menu (selected-frame))
     ;; xyzzy 起動済みならすぐに追加
     (layered-window-setup-menu)
   ;; xyzzy 起動中/ダンプ中なら *init-app-menus-hook* に引っ掛けて実行
