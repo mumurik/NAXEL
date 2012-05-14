@@ -3,77 +3,7 @@
 ("url" . "https://github.com/mumurik/NAXEL")
 ("description" . "Network Archive for Xyzzy Extending Lisp.")
 ("packages"
- (("name" . "csv-mode") ("version" . "0.0.3.0+1.0") ("author" . "OHKUBO Hiroshi") ("file" . "csv-0.0.3.0_1.0.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/csv-0.0.3.0_1.0.zip") ("description" . "ライセンス: 修正BSD\\n改変者: mumurik765") ("category" "Editing") ("md5" . "3da98152b38fcc3e975536ad00e8172b") ("time" . 3545970624) ("depends") ("changes" . "") ("notice" . "") ("load-after-install" . "site-lisp/ni-autoload/misc_notes/csv-mode.l") ("load-before-uninstall" . ""))
- (("name" . "chini") ("version" . "2005.10.08+1.0") ("author" . "OHKUBO Hiroshi") ("file" . "chini-20051008_1.0.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/chini-20051008_1.0.zip") ("description" . "ライセンス: 修正BSDライセンス\\n改変者: mumurik765") ("category" "Utilities") ("md5" . "cbf2378136a1c189821a8eb99f35e982") ("time" . 3545947358) ("depends") ("changes" . "multiframeに対応。") ("notice" . "") ("load-after-install" . ".") ("load-before-uninstall" . "site-lisp/ni-before-uninstall/misc_notes/chini.l"))
- (("name" . "vi-mode") ("version" . "1.0") ("author" . "mumurik765.") ("file" . "vi-1.0.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/vi-1.0.zip") ("description" . "vi-modeです。") ("category" "Editing") ("md5" . "17a8ae1c0d221315c5530e7981358d5f") ("time" . 3543136140) ("depends") ("changes" . "Initial release.") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
- (("name" . "Browser.dll") ("version" . "1.1") ("author" . "mumurik765") ("file" . "browser-1.1.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/browser-1.1.zip") ("description" . "Browser.dllをスクラッチから書き直しました。") ("category" "Network") ("md5" . "a4adc3647fc83c21c1327102ad1cc75a") ("time" . 3542562710) ("depends") ("changes" . "browserexでクラッシュするのを修正。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
- (("name" . "mercurial") ("version" . "0.2") ("author" . "Deecay") ("file" . "mercurial-20090215.zip") ("src" . "http://www.geocities.co.jp/Milano-Cat/2067/mercurial-20090215.zip") ("description" . "Minor mode for Mercurial VCS") ("category" "Miscellaneous") ("md5" . "b1c56b57d6dd16315856dab0b2281e8c") ("time" . 3443668075) ("depends") ("changes" . "1.1対応") ("notice" . "Please send me patches!") ("load-after-install" . "") ("load-before-uninstall" . ""))
- (("name" . "jaunte") ("version" . "0.00.01") ("file" . "jaunte-0.00.01.zip") ("src" . "http://bowbow99.sakura.ne.jp/xyzzy/jaunte-0.00.01.zip") ("description" . "画面内にヒントを散らかしてそこへジャンプ") ("md5" . "39ce5368cd9e2f4603bcda1c28fa7f15") ("time" . 3528031205) ("depends" "ansify" "ansi-loop") ("category" "Utilities") ("changes" . "2011-10-20  Ver. 0.00.01
-========================
-- 折り返し表示を再現してなかったせいでズレてたのを修正
-
-2011-10-19  Ver. 0.00.00
-========================
-- こっそりと初リリース
-  - ブログ記事書いてたら バグ発見 > 修正> Ver.up コンボ発動
-"))
- (("name" . "setf-values") ("version" . "0.01.02") ("file" . "setf-values-0.01.02.zip") ("src" . "http://bowbow99.sakura.ne.jp/xyzzy/setf-values-0.01.02.zip") ("description" . "setf で多値を扱えるようにする") ("md5" . "14fc77ea9e2c5de718da8fe222bfb607") ("time" . 3526381979) ("category" "Lisp" "Libraries") ("changes" . "2011-09-30  bowbow99  <bowbow99@gmail.com>
-
-	* version 0.01.02
-
-2011-09-30  MIYAMUKO Katsuyuki  <miyamuko@gmail.com>
-
-	* (setf (values a b c) (progn (values 1 2 3))) とかしたときに、
-	  「変数が定義されていません: #:G2532」というエラーになっていた
-	  のを修正
-
-2011-09-30  bowbow99  <bowbow99@gmail.com>
-
-	* (setf 3 8) とかしたときに、(setq 3 8) に展開されてからエラーに
-	  なっていたのを展開時にエラー投げるようにした。
-
-2011-04-09  bowbow99  <bowbow99@gmail.com>
-
-	* version 0.01.01
-
-	* `values` の setf-expander が色々ダメだったのをマシにした。
-	  - subforms の setf-expansion を使うように。
-	  - store-form が設定した多値を返すように（最後の値だけ返ってた）。
-
-	* `setf-expand-1` で特定の場合に何かしてたのを削除
-	  - 1つ目（`macroexpand-1` して再帰する）は、どうせ `get-setf-method`
-	    が同じ事してくれるのでいらない。
-	  - 2つ目（`setf-update` プロパティがあったら、その関数の呼び出しに
-	    展開）は、`macrolet` で shadow した場合にもグローバルな setf-expander
-	    を使って展開することになってしまうので削除。
-
-2009-07-16  bowbow99  <bowbow99@gmail.com>
-
-	* MIT ライセンスを適用したらしい。
-
-2009-07-0?  bowbow99  <bowbow99@gmail.com>
-
-	* 始めたらしい。
-"))
- (("name" . "insert-directory-tree") ("version" . "2005.10.19") ("author" . "OHKUBO Hiroshi") ("file" . "insert-directory-tree-20051019.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/insert-directory-tree-20051019.zip") ("description" . "ディレクトリツリーを出力します。") ("category" "Utilities") ("md5" . "d2cfa52052d33c825fa47993c950fe88") ("time" . 3338642628) ("depends") ("changes" . "・NANRI さんの拡張を取り込み。
-  *insert-directory-tree-leaf-function* に、file を引数にと
-  り文字列を返す関数を指定することで情報を付加出力する。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
- (("name" . "ruby-refe") ("version" . "2.00") ("author" . "HIE Masahiro") ("file" . "ruby-refe_2.00.zip") ("src" . "http://hie.s64.xrea.com/xyzzy/pub/ruby-refe_2.00.zip") ("description" . "ruby-mode から，ReFe を参照します。") ("category" "Documentation") ("md5" . "f2485dc589402273e45380e529e1df51") ("time" . 3479122615) ("depends") ("changes" . "[Version 2.00] 2010-04-01 (木)
-・ReFe2 に対応した(はず)。
-・ReFe1 非対応にした。
-・オプションが指定できるようにした。
-・その他いろいろ。") ("notice" . "ReFe2より前のバージョンには非対応。") ("load-after-install" . "") ("load-before-uninstall" . ""))
- (("name" . "indent-to-token+") ("version" . "2008.01.07") ("author" . "bove-crach") ("file" . "indent-to-token-plus2008.01.07.zip") ("src" . "http://park.geocities.jp/bovecrach/xyzzy/indent-to-token-plus2008.01.07.zip") ("description" . "正規表現の token を使用して桁位置を整列させる。
-思いつくまま xyzzy の Masahiro Nakano さんが作成された
-indent-to-token の改造版です") ("category" "Editing" "Development") ("md5" . "5e7c86899920761ca9f6c4d705fd0c92") ("time" . 3408719834) ("depends") ("changes" . "右揃えに対応するため、処理を見直し") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
- (("name" . "generic-comment-toggle") ("version" . "2008.01.07") ("author" . "bove-crach") ("file" . "generic-comment-toggle2008.01.07.zip") ("src" . "http://park.geocities.jp/bovecrach/xyzzy/generic-comment-toggle2008.01.07.zip") ("description" . "バッファモード毎のコメントアウトorアンコメントを行います。
-要は HIEさんのページのNOTE->編集->1 行コメントをトグル を改造しただけです") ("category" "Development" "Editing") ("md5" . "8933fa328feb50e92cb422970000779f") ("time" . 3408629027) ("depends") ("changes" . "packagesとしては初版
-・コメントアウト/アンコメントする度に行っていた(set-comment-words)を、最小限になるように。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
- (("name" . "clickable-uri") ("version" . "2005.10.08") ("author" . "OHKUBO Hiroshi") ("file" . "clickable-uri-20051008.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/clickable-uri-20051008.zip") ("description" . "左ダブルクリックによる WEB ブラウザ、メーラー等の起動を可能にします。
-URI (Uniform Resource Identifier) 強調表示も行います。") ("category" "Miscellaneous") ("md5" . "6459dda4f7e91ffde0bac8b6f14a3138") ("time" . 3337729390) ("depends") ("changes" . "・file: の場合そのまま shell-execute に渡すように変更。
-・メールアドレスを変更。
-・ライセンス条項(修正BSDライセンス)を記載。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
- (("name" . "ggrep") ("version" . "2005.10.08") ("author" . "OHKUBO Hiroshi") ("file" . "ggrep-20051008.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/ggrep-20051008.zip") ("description" . "Grep 類似の行指向検索を行います。
+ (("name" . "ggrep") ("version" . "2005.10.08+1.0") ("author" . "OHKUBO Hiroshi") ("file" . "ggrep-20051008_1.0.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/ggrep-20051008_1.0.zip") ("description" . "ライセンス: 修正BSD\\n改変者: mumurik765\\nGrep 類似の行指向検索を行います。
 
   □検索方法
   ・複数検索パターン指定 AND/OR 検索
@@ -162,8 +92,78 @@ URI (Uniform Resource Identifier) 強調表示も行います。") ("category" "Miscellane
   ┃ggrep-dialog  │        │                  │                ┃
   ┃              ├────┴─────────┴────────┨
   ┃              │dialog から全てを指定して検索                 ┃
-  ┗━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━┛") ("category" "Editing") ("md5" . "f517f13b81b096319bdddf1f3e2d9299") ("time" . 3337730879) ("depends") ("changes" . "・メールアドレスを変更。
+  ┗━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━┛") ("category" "Editing") ("md5" . "fb8fc5f373428fda099d6d8c0ad45514") ("time" . 3545971854) ("depends") ("changes" . "・メールアドレスを変更。
 ・ライセンス条項(修正BSDライセンス)を記載。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . "site-lisp/ni-before-uninstall/misc_notes/ggrep.l"))
+ (("name" . "csv-mode") ("version" . "0.0.3.0+1.0") ("author" . "OHKUBO Hiroshi") ("file" . "csv-0.0.3.0_1.0.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/csv-0.0.3.0_1.0.zip") ("description" . "ライセンス: 修正BSD\\n改変者: mumurik765") ("category" "Editing") ("md5" . "3da98152b38fcc3e975536ad00e8172b") ("time" . 3545970624) ("depends") ("changes" . "") ("notice" . "") ("load-after-install" . "site-lisp/ni-autoload/misc_notes/csv-mode.l") ("load-before-uninstall" . ""))
+ (("name" . "chini") ("version" . "2005.10.08+1.0") ("author" . "OHKUBO Hiroshi") ("file" . "chini-20051008_1.0.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/chini-20051008_1.0.zip") ("description" . "ライセンス: 修正BSDライセンス\\n改変者: mumurik765") ("category" "Utilities") ("md5" . "cbf2378136a1c189821a8eb99f35e982") ("time" . 3545947358) ("depends") ("changes" . "multiframeに対応。") ("notice" . "") ("load-after-install" . ".") ("load-before-uninstall" . "site-lisp/ni-before-uninstall/misc_notes/chini.l"))
+ (("name" . "vi-mode") ("version" . "1.0") ("author" . "mumurik765.") ("file" . "vi-1.0.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/vi-1.0.zip") ("description" . "vi-modeです。") ("category" "Editing") ("md5" . "17a8ae1c0d221315c5530e7981358d5f") ("time" . 3543136140) ("depends") ("changes" . "Initial release.") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "Browser.dll") ("version" . "1.1") ("author" . "mumurik765") ("file" . "browser-1.1.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/browser-1.1.zip") ("description" . "Browser.dllをスクラッチから書き直しました。") ("category" "Network") ("md5" . "a4adc3647fc83c21c1327102ad1cc75a") ("time" . 3542562710) ("depends") ("changes" . "browserexでクラッシュするのを修正。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "mercurial") ("version" . "0.2") ("author" . "Deecay") ("file" . "mercurial-20090215.zip") ("src" . "http://www.geocities.co.jp/Milano-Cat/2067/mercurial-20090215.zip") ("description" . "Minor mode for Mercurial VCS") ("category" "Miscellaneous") ("md5" . "b1c56b57d6dd16315856dab0b2281e8c") ("time" . 3443668075) ("depends") ("changes" . "1.1対応") ("notice" . "Please send me patches!") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "jaunte") ("version" . "0.00.01") ("file" . "jaunte-0.00.01.zip") ("src" . "http://bowbow99.sakura.ne.jp/xyzzy/jaunte-0.00.01.zip") ("description" . "画面内にヒントを散らかしてそこへジャンプ") ("md5" . "39ce5368cd9e2f4603bcda1c28fa7f15") ("time" . 3528031205) ("depends" "ansify" "ansi-loop") ("category" "Utilities") ("changes" . "2011-10-20  Ver. 0.00.01
+========================
+- 折り返し表示を再現してなかったせいでズレてたのを修正
+
+2011-10-19  Ver. 0.00.00
+========================
+- こっそりと初リリース
+  - ブログ記事書いてたら バグ発見 > 修正> Ver.up コンボ発動
+"))
+ (("name" . "setf-values") ("version" . "0.01.02") ("file" . "setf-values-0.01.02.zip") ("src" . "http://bowbow99.sakura.ne.jp/xyzzy/setf-values-0.01.02.zip") ("description" . "setf で多値を扱えるようにする") ("md5" . "14fc77ea9e2c5de718da8fe222bfb607") ("time" . 3526381979) ("category" "Lisp" "Libraries") ("changes" . "2011-09-30  bowbow99  <bowbow99@gmail.com>
+
+	* version 0.01.02
+
+2011-09-30  MIYAMUKO Katsuyuki  <miyamuko@gmail.com>
+
+	* (setf (values a b c) (progn (values 1 2 3))) とかしたときに、
+	  「変数が定義されていません: #:G2532」というエラーになっていた
+	  のを修正
+
+2011-09-30  bowbow99  <bowbow99@gmail.com>
+
+	* (setf 3 8) とかしたときに、(setq 3 8) に展開されてからエラーに
+	  なっていたのを展開時にエラー投げるようにした。
+
+2011-04-09  bowbow99  <bowbow99@gmail.com>
+
+	* version 0.01.01
+
+	* `values` の setf-expander が色々ダメだったのをマシにした。
+	  - subforms の setf-expansion を使うように。
+	  - store-form が設定した多値を返すように（最後の値だけ返ってた）。
+
+	* `setf-expand-1` で特定の場合に何かしてたのを削除
+	  - 1つ目（`macroexpand-1` して再帰する）は、どうせ `get-setf-method`
+	    が同じ事してくれるのでいらない。
+	  - 2つ目（`setf-update` プロパティがあったら、その関数の呼び出しに
+	    展開）は、`macrolet` で shadow した場合にもグローバルな setf-expander
+	    を使って展開することになってしまうので削除。
+
+2009-07-16  bowbow99  <bowbow99@gmail.com>
+
+	* MIT ライセンスを適用したらしい。
+
+2009-07-0?  bowbow99  <bowbow99@gmail.com>
+
+	* 始めたらしい。
+"))
+ (("name" . "insert-directory-tree") ("version" . "2005.10.19") ("author" . "OHKUBO Hiroshi") ("file" . "insert-directory-tree-20051019.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/insert-directory-tree-20051019.zip") ("description" . "ディレクトリツリーを出力します。") ("category" "Utilities") ("md5" . "d2cfa52052d33c825fa47993c950fe88") ("time" . 3338642628) ("depends") ("changes" . "・NANRI さんの拡張を取り込み。
+  *insert-directory-tree-leaf-function* に、file を引数にと
+  り文字列を返す関数を指定することで情報を付加出力する。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "ruby-refe") ("version" . "2.00") ("author" . "HIE Masahiro") ("file" . "ruby-refe_2.00.zip") ("src" . "http://hie.s64.xrea.com/xyzzy/pub/ruby-refe_2.00.zip") ("description" . "ruby-mode から，ReFe を参照します。") ("category" "Documentation") ("md5" . "f2485dc589402273e45380e529e1df51") ("time" . 3479122615) ("depends") ("changes" . "[Version 2.00] 2010-04-01 (木)
+・ReFe2 に対応した(はず)。
+・ReFe1 非対応にした。
+・オプションが指定できるようにした。
+・その他いろいろ。") ("notice" . "ReFe2より前のバージョンには非対応。") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "indent-to-token+") ("version" . "2008.01.07") ("author" . "bove-crach") ("file" . "indent-to-token-plus2008.01.07.zip") ("src" . "http://park.geocities.jp/bovecrach/xyzzy/indent-to-token-plus2008.01.07.zip") ("description" . "正規表現の token を使用して桁位置を整列させる。
+思いつくまま xyzzy の Masahiro Nakano さんが作成された
+indent-to-token の改造版です") ("category" "Editing" "Development") ("md5" . "5e7c86899920761ca9f6c4d705fd0c92") ("time" . 3408719834) ("depends") ("changes" . "右揃えに対応するため、処理を見直し") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "generic-comment-toggle") ("version" . "2008.01.07") ("author" . "bove-crach") ("file" . "generic-comment-toggle2008.01.07.zip") ("src" . "http://park.geocities.jp/bovecrach/xyzzy/generic-comment-toggle2008.01.07.zip") ("description" . "バッファモード毎のコメントアウトorアンコメントを行います。
+要は HIEさんのページのNOTE->編集->1 行コメントをトグル を改造しただけです") ("category" "Development" "Editing") ("md5" . "8933fa328feb50e92cb422970000779f") ("time" . 3408629027) ("depends") ("changes" . "packagesとしては初版
+・コメントアウト/アンコメントする度に行っていた(set-comment-words)を、最小限になるように。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
+ (("name" . "clickable-uri") ("version" . "2005.10.08") ("author" . "OHKUBO Hiroshi") ("file" . "clickable-uri-20051008.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/clickable-uri-20051008.zip") ("description" . "左ダブルクリックによる WEB ブラウザ、メーラー等の起動を可能にします。
+URI (Uniform Resource Identifier) 強調表示も行います。") ("category" "Miscellaneous") ("md5" . "6459dda4f7e91ffde0bac8b6f14a3138") ("time" . 3337729390) ("depends") ("changes" . "・file: の場合そのまま shell-execute に渡すように変更。
+・メールアドレスを変更。
+・ライセンス条項(修正BSDライセンス)を記載。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . ""))
  (("name" . "sort-line") ("version" . "2005.10.08") ("author" . "OHKUBO Hiroshi") ("file" . "sort-line-20051008.zip") ("src" . "http://ohkubo.s53.xrea.com/xyzzy/sort-line-20051008.zip") ("description" . "任意のカラム以降をキーとして、バッファ全体／選択範囲の行のソートを
 行います。") ("category" "Text Processing") ("md5" . "0d336221d03200da7f33b1140ee57d61") ("time" . 3337733132) ("depends") ("changes" . "・メールアドレスを変更。
 ・ライセンス条項(修正BSDライセンス)を記載。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . "site-lisp/ni-before-uninstall/misc_notes/sort-line.l"))
