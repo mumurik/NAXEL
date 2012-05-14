@@ -3,6 +3,8 @@
 
 ;; Copyright (C) 2001-2005 OHKUBO Hiroshi <ohkubo@s53.xrea.com>
 
+;; Modified by mumurik765 2012/05/14
+;;
 ;; Author: OHKUBO Hiroshi <ohkubo@s53.xrea.com>
 ;; Time-stamp: <2005/10/08 11:00:16 +0900>
 
@@ -406,8 +408,8 @@
                                 (add-history filename (quote ,history))))))
         (defun ,insert-menu-items-func (&key menu pre-tag position head-sep tail-sep access-key)
           (,history-to-menu-func)
-          (if (and (not (menup menu)) (menup *app-menu*))
-              (setq menu (get-menu *app-menu* 'ed::file)))
+          (if (and (not (menup menu)) (menup (get-app-menu (selected-frame))))
+              (setq menu (get-menu (get-app-menu (selected-frame)) 'ed::file)))
           (when (menup menu)
             (,delete-menu-func menu)
             (when (and pre-tag
@@ -440,8 +442,8 @@
                 (insert-menu-separator menu position (quote ,menu-sep-tag)))))
 
         (defun ,delete-menu-func (&optional menu)
-          (if (and (not (menup menu)) (menup *app-menu*))
-              (setq menu (get-menu *app-menu* 'ed::file)))
+          (if (and (not (menup menu)) (menup (get-app-menu (selected-frame))))
+              (setq menu (get-menu (get-app-menu (selected-frame)) 'ed::file)))
           (when (menup menu)
             (while (delete-menu menu (quote ,popup-menu-tag)))
             (while (delete-menu menu (quote ,load-dialog-func)))
@@ -522,8 +524,8 @@
                         (add-history filename *chini-backup-config-file-history*)))))
 (defun chini-backup-config-file-insert-menu-items (&key menu position head-sep tail-sep access-key)
   (chini-add-backup-config-file-history-to-menu)
-  (if (and (not (menup menu)) (menup *app-menu*))
-      (setq menu (get-menu *app-menu* 'ed::file)))
+  (if (and (not (menup menu)) (menup (get-app-menu (selected-frame))))
+      (setq menu (get-menu (get-app-menu (selected-frame)) 'ed::file)))
   (when (menup menu)
     (chini-backup-config-file-delete-menu)
     (unless (and (numberp position) (integerp position) (not (minusp position))
@@ -552,8 +554,8 @@
              (get-menu menu (incf position) t))
         (insert-menu-separator menu position 'chini-backup-config-file-sep))))
 (defun chini-backup-config-file-delete-menu (&optional menu)
-  (if (and (not (menup menu)) (menup *app-menu*))
-      (setq menu (get-menu *app-menu* 'ed::file)))
+  (if (and (not (menup menu)) (menup (get-app-menu (selected-frame))))
+      (setq menu (get-menu (get-app-menu (selected-frame)) 'ed::file)))
   (when (menup menu)
     (while (delete-menu menu 'chini-recent-backup-config-file-popup-menu))
     (while (delete-menu menu 'chini-restore-config-file-dialog))
@@ -582,8 +584,8 @@
 (defun chini-insert-menu-items (&key menu pre-tag position head-sep tail-sep access-key)
   (unless *chini-popup-menu*
     (setq *chini-popup-menu* (chini-create-popup-menu)))
-  (if (and (not (menup menu)) (menup *app-menu*))
-      (setq menu (get-menu *app-menu* 'ed::tools)))
+  (if (and (not (menup menu)) (menup (get-app-menu (selected-frame))))
+      (setq menu (get-menu (get-app-menu (selected-frame)) 'ed::tools)))
   (when (menup menu)
     (chini-delete-menu)
     (unless (or pre-tag position)
@@ -609,8 +611,8 @@
              (get-menu menu (incf position) t))
         (insert-menu-separator menu position 'chini-sep))))
 (defun chini-delete-menu (&optional menu)
-  (if (and (not (menup menu)) (menup *app-menu*))
-      (setq menu (get-menu *app-menu* 'ed::tools)))
+  (if (and (not (menup menu)) (menup (get-app-menu (selected-frame))))
+      (setq menu (get-menu (get-app-menu (selected-frame)) 'ed::tools)))
   (when (menup menu)
     (while (delete-menu menu 'chini-menu))
     (while (delete-menu menu 'chini-sep))))
