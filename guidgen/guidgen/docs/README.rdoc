@@ -1,0 +1,365 @@
+== guidgen - GUID を生成するライブラリとツール
+
+* Home URL: http://miyamuko.s56.xrea.com/xyzzy/guidgen/intro.htm
+* Version: 1.2.0
+
+
+=== SYNOPSIS
+
+ライブラリ
+
+  (require "guidgen")
+
+  (let ((guid (guidgen:guidgen)))
+    (msgbox "GUID: ~A" guid))
+
+  (let ((guid (guidgen:guidgen :downcase t)))
+    (msgbox "GUID: ~A" guid))
+
+  (use-package :guidgen)
+  (multiple-value-bind (guid-str guid-list)
+      (guidgen :downcase t)
+    (msgbox "GUID: ~A (~{#x~x ~})" guid-str guid-list))
+
+フロントエンド
+
+  M-x guidgen-copy-to-clipboard
+  M-x guidgen-copy-to-kill-ring
+
+  M-x guidgen-toggle-use-last-guid
+
+  M-x guidgen-insert
+  M-x guidgen-replace
+  M-x guidgen-replace-or-insert
+
+  M-x guidgen-replace-all-buffer
+  M-x guidgen-replace-buffer
+  M-x guidgen-replace-region
+  M-x guidgen-replace-selection
+
+  M-x guidgen-replace-history-clear
+  M-x guidgen-replace-history-show
+
+  M-x guidgen-insert-implement-olecreate
+  M-x guidgen-insert-define-guid
+  M-x guidgen-insert-static-const-guid
+  M-x guidgen-insert-registry
+  M-x guidgen-insert-urn
+
+  M-x guidgen-track-popup-menu
+  M-x guidgen-setup-app-menu
+  M-x guidgen-setup-app-popup-menu
+  M-x guidgen-remove-app-menu
+  M-x guidgen-remove-app-popup-menu
+
+
+=== DESCRIPTION
+
+guidgen は GUID を生成するためのツールです。
+Microsoft の guidgen.exe と同じアルゴリズム (というか CoCreateGuid) で GUID を生成します。
+
+guidgen は以下の形式で GUID を生成することができます。
+
+* IMPLEMENT_OLECREATE マクロ
+* DEFINE_GUID マクロ
+* static const GUID
+* レジストリ形式 ({xxxxxxxx-...})
+* urn 形式 (urn:uuid:xxxxxxxx-...)
+* 無変換 (xxxxxxxx-...)
+
+また、前置引数に対応しているので GUID を大量に生成することも可能です。
+
+  C-u M-x guidgen-insert
+  C-u M-x guidgen-insert-implement-olecreate
+  C-u M-x guidgen-insert-define-guid
+  C-u M-x guidgen-insert-static-const-guid
+  C-u M-x guidgen-insert-registry
+  C-u M-x guidgen-insert-urn
+
+=== INSTALL
+
+1. {NetInstaller}[http://www7a.biglobe.ne.jp/~hat/xyzzy/ni.html]
+   で guidgen をインストールします。
+
+2. ni-autoload を利用していない場合は、
+   ~/.xyzzy または site-lisp/siteinit.l に以下のコードを追加します。
+
+     (require "guidgen")
+
+   ※ ni-autoload を利用している場合は設定は不要です。
+
+3. 必要ならメニューを定義
+
+     ;; 「ツール」メニューに「GUID生成」というメニューを追加します。
+     (guidgen-setup-app-menu)
+
+     ;; 右クリックメニューに「GUID生成」というメニューを追加します。
+     ;; ni-autoload を使っている場合はデフォルトで設定済み。
+     (guidgen-setup-app-popup-menu)
+
+4. 設定を反映させるため xyzzy を再起動してください。
+
+   ※siteinit.l に記述した場合には再ダンプが必要です。
+
+
+=== VARIABLE
+
+* *guidgen-version*
+
+  本ライブラリのバージョンを保持する定数です。
+  バージョンは major.minor.teeny という形式です。
+  それぞれの番号は必ず 1 桁にするので、以下のように比較することができます
+  (Ruby と同じです :-)。
+
+      (if (string<= "1.1.0" guidgen:*guidgen-version*)
+          (1.1.0 以降で有効な処理)
+        (1.1.0 より前のバージョンでの処理))
+
+=== COMMAND
+
+* guidgen-copy-to-clipboard
+
+  GUID を生成してクリップボードにコピーします。
+
+  形式は無変換 (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) です。
+
+* guidgen-copy-to-kill-ring
+
+  GUID を生成して kill ring にコピーします。
+
+  形式は無変換 (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) です。
+
+* guidgen-toggle-use-last-guid
+
+  直前の GUID を繰り返すかどうかを切り替えます。
+
+* guidgen-use-last-guid-p
+
+  直前の GUID を繰り返す場合 non-nil を返します。
+
+* guidgen-toggle-use-downcase
+
+  GUID を小文字で生成するかどうかを切り替えます。
+
+* guidgen-use-downcase-p
+
+  GUID を小文字で生成する場合 non-nil を返します。
+
+* guidgen-insert
+
+  GUID を生成してカーソル下に挿入します。
+
+  形式は無変換 (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) です。
+
+* guidgen-replace
+
+  カーソル下の GUID を置換します。
+
+  カーソル下に GUID っぽい文字列が無い場合は何もしません。
+
+* guidgen-replace-or-insert
+
+  カーソル下の GUID を置換します。
+
+  カーソル下に GUID っぽい文字列が無い場合は新たに挿入します。
+
+  前置引数に対応しています。
+
+* guidgen-replace-region
+
+  リージョン内の GUID 文字列を置換します。
+
+  以下のパターンにマッチした文字列を GUID とみなします (X は 16 進数)。
+
+    XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+
+  なお、同じ GUID は同じ値に置換されます。
+
+  例:
+    ;; 置換前
+    28EBC579-69EE-4A96-79C5-EB28EE69964A
+    2EB4C86B-1854-4C82-6BC8-B42E5418824C
+    BE7359FB-62F4-4880-FB59-73BEF4628048
+    BE7359FB-62F4-4880-FB59-73BEF4628048
+
+    ;; 置換後
+    32DF4C88-46E0-412B-884C-DF32E0462B41
+    7A210592-E915-48EB-9205-217A15E9EB48
+    71CF1453-6FD2-4009-5314-CF71D26F0940
+    71CF1453-6FD2-4009-5314-CF71D26F0940
+
+  ※注意
+
+  以下のような XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX 以外の形式の GUID には対応していません。
+
+    DEFINE_GUID(<<name>>,
+    0x045e9d7a, 0x2947, 0x475d, 0x7a, 0x9d, 0x5e, 0x04, 0x47, 0x29, 0x5d, 0x47);
+
+* guidgen-replace-selection
+
+  セレクション内の GUID 文字列を置換します。
+
+  詳細は guidgen-replace-region を参照してください。
+
+* guidgen-replace-buffer
+
+  バッファ内の GUID 文字列を置換します。
+
+  詳細は guidgen-replace-region を参照してください。
+
+* guidgen-replace-all-buffer
+
+  全バッファ内の GUID 文字列を置換します。
+
+  詳細は guidgen-replace-region を参照してください。
+
+* guidgen-replace-history-clear
+
+  GUID の置換履歴をクリアします。
+
+* guidgen-replace-history-show
+
+  GUID の置換履歴を参照します。
+
+  出力例:
+
+    28EBC579-69EE-4A96-79C5-EB28EE69964A => 32DF4C88-46E0-412B-884C-DF32E0462B41
+    2EB4C86B-1854-4C82-6BC8-B42E5418824C => 7A210592-E915-48EB-9205-217A15E9EB48
+    BE7359FB-62F4-4880-FB59-73BEF4628048 => 71CF1453-6FD2-4009-5314-CF71D26F0940
+
+* guidgen-insert-implement-olecreate
+
+  IMPLEMENT_OLECREATE マクロ形式でカーソル下に GUID を挿入します。
+
+    // {82E6BCA9-3AA9-478F-A9BC-E682A93A8F47}
+    IMPLEMENT_OLECREATE(<<class>>, <<external_name>>,
+    0x82e6bca9, 0x3aa9, 0x478f, 0xa9, 0xbc, 0xe6, 0x82, 0xa9, 0x3a, 0x8f, 0x47);
+
+  前置引数に対応しています。
+
+* guidgen-insert-define-guid
+
+  DEFINE_GUID マクロ形式でカーソル下に GUID を挿入します。
+
+    // {045E9D7A-2947-475D-7A9D-5E0447295D47}
+    DEFINE_GUID(<<name>>,
+    0x045e9d7a, 0x2947, 0x475d, 0x7a, 0x9d, 0x5e, 0x04, 0x47, 0x29, 0x5d, 0x47);
+
+  前置引数に対応しています。
+
+* guidgen-insert-static-const-guid
+
+  GUID 構造体形式でカーソル下に GUID を挿入します。
+
+    // {6EAC24CD-4E4F-4420-CD24-AC6E4F4E2044}
+    static const GUID <<name>> = {
+        0x6eac24cd, 0x4e4f, 0x4420, { 0xcd, 0x24, 0xac, 0x6e, 0x4f, 0x4e, 0x20, 0x44 }
+    };
+
+  前置引数に対応しています。
+
+* guidgen-insert-registry
+
+  レジストリ形式でカーソル下に GUID を挿入します。
+
+    {AEB3A288-457B-47DA-88A2-B3AE7B45DA47}
+
+  前置引数に対応しています。
+
+* guidgen-insert-urn
+
+  urn 形式でカーソル下に GUID を挿入します。
+
+    urn:uuid:CA02D532-7FDC-4111-32D5-02CADC7F1141
+
+  前置引数に対応しています。
+
+* guidgen-track-popup-menu
+
+  GUID を生成するためのメニューをポップアップして表示します。
+
+* guidgen-setup-app-menu
+
+  「ツール」メニューに「GUID生成」というメニューを追加します。
+
+* guidgen-setup-app-popup-menu
+
+  右クリックメニューに「GUID生成」というメニューを追加します。
+
+* guidgen-remove-app-menu
+
+  「ツール」メニューから「GUID生成」メニューを削除します。
+
+* guidgen-remove-app-popup-menu
+
+  右クリックメニューから「GUID生成」メニューを削除します。
+
+
+=== FUNCTION
+
+* guidgen:guidgen &key downcase
+
+  GUID を生成します。
+  生成した GUID を多値 (GUID の文字列表現、GUID の各フィールドを数値にした list) で返します。
+
+    (guidgen:guidgen)
+    "14DF2874-0B1E-4E62-7428-DF141E0B624E"
+    (350169204 2846 20066 116 40 223 20 30 11 98 78)
+
+  downcase に non-nil を指定すると小文字の 16 進数で GUID を生成します。
+
+    (car (multiple-value-list (guidgen:guidgen :downcase t)))
+    "c26ff9d9-aac2-4c2b-d9f9-6fc2c2aa2b4c"
+
+
+=== TODO
+
+なし。
+
+
+=== KNOWN BUGS
+
+なし。
+
+要望やバグは
+{GitHub Issues}[http://github.com/miyamuko/guidgen/issues] か
+{@miyamuko}[http://twitter.com/home?status=%40miyamuko%20%23xyzzy%20guidgen%3a%20]
+まで。
+
+
+=== AUTHOR
+
+みやむこ かつゆき <mailto:miyamuko@gmail.com>
+
+
+=== SEE ALSO
+
+* {Microsoft Exchange Server GUID Generator}[http://www.microsoft.com/downloads/details.aspx?FamilyId=94551F58-484F-4A8C-BB39-ADB270833AFC]
+* {UUID}[http://msdn.microsoft.com/library/default.asp?url=/library/en-us/rpc/rpc/uuid_1.asp]
+* {CoCreateGuid}[http://msdn.microsoft.com/library/default.asp?url=/library/en-us/com/html/8d5cedea-8c2b-4918-99db-1a000989f178.asp]
+
+
+=== COPYRIGHT
+
+guidgen は MIT/X ライセンスに従って本ソフトウェアを使用、再配布することができます。
+
+  Copyright (c) 2006,2008,2011 MIYAMUKO Katsuyuki.
+
+  Permission is hereby granted, free of charge, to any person obtaining
+  a copy of this software and associated documentation files (the
+  "Software"), to deal in the Software without restriction, including
+  without limitation the rights to use, copy, modify, merge, publish,
+  distribute, sublicense, and/or sell copies of the Software, and to
+  permit persons to whom the Software is furnished to do so, subject to
+  the following conditions:
+
+  The above copyright notice and this permission notice shall be
+  included in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

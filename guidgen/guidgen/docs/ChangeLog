@@ -1,0 +1,69 @@
+2011-08-06  MIYAMUKO Katsuyuki
+
+	* guidgen 1.2.0 released!
+
+2011-08-04  MIYAMUKO Katsuyuki
+
+	* DEFINE_GUID などで GUID を生成するときに
+	大文字で生成するときはコード部分の 16 進数も大文字にするようにした
+
+	* 小文字で GUID を生成する機能を追加
+	  - guidgen-toggle-use-downcase
+	  - guidgen-use-downcase-p
+
+2008-08-20  MIYAMUKO Katsuyuki
+
+	* guidgen 1.1.0 released!
+
+	* GUID 一括置換機能を追加
+	  - guidgen-replace-all-buffer
+	  - guidgen-replace-buffer
+	  - guidgen-replace-region
+	  - guidgen-replace-selection
+	  - guidgen-replace-history-clear
+	  - guidgen-replace-history-show
+
+	* 直前の GUID を繰り返す機能を追加
+	  - guidgen-toggle-use-last-guid
+	  - guidgen-use-last-guid-p
+
+2006-07-09  MIYAMUKO Katsuyuki
+
+	* guidgen 1.0.0 released!
+
+2006-07-07  MIYAMUKO Katsuyuki
+
+	* README.txt を MIT-LICENSE を site-lisp/guidgen に移動。
+
+	* ファイル構成を変更。
+	ui-about.l => editor/about.l
+	ui-editor.l => editor/command.l
+	ui-menu.l => editor/menu.l
+
+2006-07-05  MIYAMUKO Katsuyuki
+
+	* urn:uuid:xxxx 形式をサポートした。
+
+	* ツールメニューと右クリックメニューに追加・削除する関数を作成。
+	- guidgen-install-app-menu
+	- guidgen-install-app-popup-menu
+	- guidgen-uninstall-app-menu
+	- guidgen-uninstall-app-popup-menu
+
+2006-07-04  MIYAMUKO Katsuyuki
+
+	* ライブラリ部分 (guidgen/guidgen) は実験的に clisp に対応。
+
+	* 以下の関数を追加。
+	- guidgen-replace
+	- guidgen-replace-or-insert
+	- guidgen-insert-implement-olecreate
+	- guidgen-insert-define-guid
+	- guidgen-insert-static-const-GUID
+	- guidgen-insert-registry
+	- guidgen-popup-menu
+
+2006-06-22  MIYAMUKO Katsuyuki
+
+	* guidgen.l 作成開始。
+
