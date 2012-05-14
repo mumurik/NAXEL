@@ -3,7 +3,7 @@
 ("url" . "https://github.com/mumurik/NAXEL")
 ("description" . "Network Archive for Xyzzy Extending Lisp.")
 ("packages"
- (("name" . "ggrep") ("version" . "2005.10.08+1.0") ("author" . "OHKUBO Hiroshi") ("file" . "ggrep-20051008_1.0.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/ggrep-20051008_1.0.zip") ("description" . "ライセンス: 修正BSD\\n改変者: mumurik765\\nGrep 類似の行指向検索を行います。
+ (("name" . "ggrep") ("version" . "2005.10.08+1.1") ("author" . "OHKUBO Hiroshi") ("file" . "ggrep-20051008_1.1.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/ggrep-20051008_1.1.zip") ("description" . "ライセンス: 修正BSD\\n改変者: mumurik765\\nGrep 類似の行指向検索を行います。
 
   □検索方法
   ・複数検索パターン指定 AND/OR 検索
@@ -92,7 +92,7 @@
   ┃ggrep-dialog  │        │                  │                ┃
   ┃              ├────┴─────────┴────────┨
   ┃              │dialog から全てを指定して検索                 ┃
-  ┗━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━┛") ("category" "Editing") ("md5" . "fb8fc5f373428fda099d6d8c0ad45514") ("time" . 3545971854) ("depends") ("changes" . "・メールアドレスを変更。
+  ┗━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━┛") ("category" "Editing") ("md5" . "b5ca6bf699e98ea83e00f3021903a93a") ("time" . 3545972705) ("depends") ("changes" . "・メールアドレスを変更。
 ・ライセンス条項(修正BSDライセンス)を記載。") ("notice" . "") ("load-after-install" . "") ("load-before-uninstall" . "site-lisp/ni-before-uninstall/misc_notes/ggrep.l"))
  (("name" . "csv-mode") ("version" . "0.0.3.0+1.0") ("author" . "OHKUBO Hiroshi") ("file" . "csv-0.0.3.0_1.0.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/csv-0.0.3.0_1.0.zip") ("description" . "ライセンス: 修正BSD\\n改変者: mumurik765") ("category" "Editing") ("md5" . "3da98152b38fcc3e975536ad00e8172b") ("time" . 3545970624) ("depends") ("changes" . "") ("notice" . "") ("load-after-install" . "site-lisp/ni-autoload/misc_notes/csv-mode.l") ("load-before-uninstall" . ""))
  (("name" . "chini") ("version" . "2005.10.08+1.0") ("author" . "OHKUBO Hiroshi") ("file" . "chini-20051008_1.0.zip") ("src" . "https://github.com/downloads/mumurik/NAXEL/chini-20051008_1.0.zip") ("description" . "ライセンス: 修正BSDライセンス\\n改変者: mumurik765") ("category" "Utilities") ("md5" . "cbf2378136a1c189821a8eb99f35e982") ("time" . 3545947358) ("depends") ("changes" . "multiframeに対応。") ("notice" . "") ("load-after-install" . ".") ("load-before-uninstall" . "site-lisp/ni-before-uninstall/misc_notes/chini.l"))
