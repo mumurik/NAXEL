@@ -3,6 +3,8 @@
 
 ;; Copyright (C) 2001-2005 OHKUBO Hiroshi <ohkubo@s53.xrea.com>
 
+;; Modified by: mumurik765 2012/05/14
+;; 
 ;; Author: OHKUBO Hiroshi <ohkubo@s53.xrea.com>
 ;; Time-stamp: <2005/10/08 12:22:19 +0900>
 
@@ -3580,8 +3582,8 @@ history 変数への値保存は行わないため、保存すべき値は呼び出し元で保存する。"
 
 ;; menu
 (defun ggrep-insert-menu-items (&key menu pre-tag position head-sep tail-sep)
-  (if (and (not (menup menu)) (menup *app-menu*))
-      (setq menu (get-menu *app-menu* 'ed::search)))
+  (if (and (not (menup menu)) (menup (get-app-menu (selected-frame))))
+      (setq menu (get-menu (get-app-menu (selected-frame)) 'ed::search)))
   (when (menup menu)
     (ggrep-delete-menu menu)
     (unless (or pre-tag position)
@@ -3605,8 +3607,8 @@ history 変数への値保存は行わないため、保存すべき値は呼び出し元で保存する。"
              (get-menu menu (incf position) t))
         (insert-menu-separator menu position 'ggrep-sep))))
 (defun ggrep-delete-menu (&optional menu)
-  (if (and (not (menup menu)) (menup *app-menu*))
-      (setq menu (get-menu *app-menu* 'ed::search)))
+  (if (and (not (menup menu)) (menup (get-app-menu (selected-frame))))
+      (setq menu (get-menu (get-app-menu (selected-frame)) 'ed::search)))
   (when (menup menu)
     (while (delete-menu menu 'ggrep-dialog))
     (while (delete-menu menu 'ggrep-sep))))
@@ -3632,7 +3634,7 @@ history 変数への値保存は行わないため、保存すべき値は呼び出し元で保存する。"
   (delete-command-bar 'ggrep-tool-bar)
   (ggrep-delete-menu))
 
-(if (menup ed::*app-menu*)
+(if (menup (get-app-menu (selected-frame)))
     (ggrep-insert-menu-items)
   (add-hook 'ed::*init-app-menus-hook*
             #'(lambda () (ggrep-insert-menu-items))))
