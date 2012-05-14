@@ -2,7 +2,9 @@
 ;;; csv-mode.l --- Comma Separated Value file editing mode for xyzzy
 
 ;; Copyright (C) 2001-2006 OHKUBO Hiroshi <ohkubo@s53.xrea.com>
-
+;;
+;; Modified by mumurik765
+;;
 ;; Author: OHKUBO Hiroshi <ohkubo@s53.xrea.com>
 ;; Version: 0.0.3.0
 ;; Time-stamp: <2006/10/21 19:39:23 +0900>
@@ -2638,7 +2640,7 @@ nil             : 必須の場合のみ「\"」で括る")
         (insert-csv-menu)))))
 
 ;; 「終了時の状態を保存する」設定時に対処
-(unless *app-menu*
+(unless (get-app-menu (selected-frame))
   ;; local-menu は他のメニューが全て生成された後に変更すべきなので
   ;; *init-app-menus-hook* でなく *post-startup-hook* にしてみた。
   (add-hook '*post-startup-hook* 'insert-csv-menu-all-buffers))
