@@ -101,19 +101,27 @@
 
 (defun guidgen-setup-app-menu ()
   (interactive)
-  (guidgen-setup-menu '*app-menu* '(ed::tools :above-insert-date) 1))
+  (dolist (frame (frame-list))
+    (guidgen-setup-menu (get-app-menu frame) '(ed::tools :above-insert-date) 1))
+  (add-hook '*init-app-menus-hook* 'guidgen-setup-app-menu))
 
 (defun guidgen-setup-app-popup-menu ()
   (interactive)
-  (guidgen-setup-menu '*app-popup-menu* nil 1))
+  (dolist (frame (frame-list))
+    (guidgen-setup-menu (get-app-popup-menu frame) nil 1))
+  (add-hook '*init-app-menus-hook* 'guidgen-setup-app-popup-menu))
 
 (defun guidgen-remove-app-menu ()
   (interactive)
-  (guidgen-remove-menu '*app-menu* '(ed::tools :above-insert-date)))
+  (dolist (frame (frame-list))
+    (guidgen-remove-menu (get-app-menu frame) '(ed::tools :above-insert-date)))
+  (delete-hook '*init-app-menus-hook* 'guidgen-setup-app-menu))
 
 (defun guidgen-remove-app-popup-menu ()
   (interactive)
-  (guidgen-remove-menu '*app-popup-menu* nil))
+  (dolist (frame (frame-list))
+    (guidgen-remove-menu (get-app-popup-menu frame) nil))
+  (delete-hook '*init-app-menus-hook* 'guidgen-setup-app-popup-menu))
 
 
 
@@ -128,14 +136,13 @@
                          (guidgen-remove-menu0 root-menu path))))
 
 (defun guidgen-with-menu (root-menu fn)
-  (if (symbol-value root-menu)
-      (funcall fn)
-    (add-hook '*init-app-menus-hook* fn)))
+  (when root-menu
+    (funcall fn)))
 
 (defun guidgen-setup-menu0 (root-menu &optional path offset)
   (guidgen-remove-menu0 root-menu path)
   (multiple-value-bind (pos menu)
-      (guidgen-find-menu (symbol-value root-menu) path)
+      (guidgen-find-menu root-menu path)
     (when (and menu (menup menu))
       (if (and pos (numberp pos))
           (insert-popup-menu menu (+ pos offset)
@@ -147,7 +154,7 @@
 
 (defun guidgen-remove-menu0 (root-menu &optional path)
   (multiple-value-bind (pos menu)
-      (guidgen-find-menu (symbol-value root-menu) path)
+      (guidgen-find-menu root-menu path)
     (when (and menu (menup menu))
       (while (delete-menu menu 'guidgen)))))
 
