@@ -1,0 +1,2 @@
+py-modeのライセンスはGNU GPL v2です。
+詳細はsite-lisp/LICENSES/GPLv2.txtを参照ください。
