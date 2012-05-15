@@ -743,13 +743,13 @@ sys.stdout = getwriter('shift_jis')(sys.stdout)
 		  (when (and (eq buffer-mode 'py-mode) (current-menu))
             (use-local-menu menu)))))))
 
-(unless *app-menu*
+(unless (get-app-menu (selected-frame))
   (add-hook '*post-startup-hook* 'py-menu-update-all-buffers))
 
 (defun py-get-menu ()
   "py-mode: 状況に応じたローカルメニューの作成"
-  (when *app-menu*
-	(let ((menu (copy-menu-items *app-menu* (create-menu))))
+  (when (get-app-menu (selected-frame))
+	(let ((menu (copy-menu-items (get-app-menu (selected-frame)) (create-menu))))
 	  ;(insert-popup-menu menu (get-menu-position menu 'ed::help)
 	  ;									 (create-imenu)
 	  ;                   *py-imenu-name*)
