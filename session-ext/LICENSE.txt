@@ -1,0 +1,2 @@
+﻿session-extのライセンスはMITライセンスです。
+詳細はsession-ext.lの先頭部分を参照ください。
