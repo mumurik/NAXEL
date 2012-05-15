@@ -73,6 +73,7 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 
 copyright 2006   Masahiro Nakano
+modified by mumurik765 2012/05/16
 
 ・Author 
     Masahiro Nakano <m-nakano@jaist.ac.jp>
@@ -172,8 +173,8 @@ run-hook-with-args-until-success でバッファを引数にして呼び出されます。")
 			     (list (list (pseudo-frame-name frame)
 					 (winconf-to-readable-winconf
 					  (pseudo-frame-winconf frame))
-					 (eq frame *current-pseudo-frame*)))))
-		       *pseudo-frame-list*))
+					 (eq frame (get-current-pseudo-frame (selected-frame)))))))
+		       (get-pseudo-frame-list (selected-frame))))
 	(binfo (list-buffer-info)))
     (princ ";;; xyzzy session file.\n;;; This file is generated automatically. do not edit.\n" s)
     (write `(in-package ,(package-name *package*)) :stream s :escape t)
