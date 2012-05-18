@@ -1,0 +1,2 @@
+﻿diff-backupのライセンスはMITライセンスです。
+詳細はdiff-backup.lの先頭部分を参照ください。
