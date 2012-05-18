@@ -2,6 +2,8 @@
 ;;;;
 ;;;; File: xtal-mode/menu.l
 ;;;;
+;;;; Modified by: mumurik765 2012/05/18
+;;;;
 ;;;; License:
 ;;;;
 ;;;;   Copyright (c) 2007 MIYAMUKO Katsuyuki.
@@ -120,7 +122,7 @@
 
 ;;; 初期化
 
-(unless *app-menu*
+(unless (get-app-menu (selected-frame))
   ;; local-menu は他のメニューが全て生成された後に変更すべきなので
   ;; *init-app-menus-hook* でなく *post-startup-hook* で実行
   (add-hook '*post-startup-hook* 'insert-xtal-menu-all-buffers))
