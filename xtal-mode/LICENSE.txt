@@ -1,0 +1,2 @@
+﻿xtal-modeのライセンスはMITライセンスです。
+詳細はsite-lisp/xtal-mode/docs/MIT-LICENSE を参照ください。

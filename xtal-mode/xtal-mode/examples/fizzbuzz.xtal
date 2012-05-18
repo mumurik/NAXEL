@@ -1,0 +1,38 @@
+FizzBuzz: class {
+    + _n;
+    - _f;
+
+    initialize: method(_n) {}
+
+    iter_first: method() {
+        _f = fiber() {
+            _n.times {
+                if (it % 15 == 0) {
+                    yield this, "FizzBuzz";
+                } else if (it % 5 == 0) {
+                    yield this, "Fizz";
+                } else if (it % 3 == 0) {
+                    yield this, "Buzz";
+                } else {
+                    yield this, it;
+                }
+            }
+            yield null, null;
+        }
+        return _f();
+    }
+
+    iter_next: method() {
+        return _f();
+    }
+}
+
+fizzbuzz: FizzBuzz(10);
+fizzbuzz {
+    it.p;
+}
+"-------------------------".p;
+fizzbuzz.n = 100;
+fizzbuzz {
+    it.p;
+}
