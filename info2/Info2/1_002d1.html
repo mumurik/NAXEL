@@ -1,0 +1,235 @@
+<html lang="ja">
+<head>
+<title>1-1 - Info2</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Info2">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="1.html#g_t1" title="1">
+<link rel="next" href="1_002d2.html#g_t1_002d2" title="1-2">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+     Copyright (C) 2007, Masanori Miyajima. All rights reserved.
+
+     Redistribution and use in source and binary forms, with or without
+     modification, are permitted provided that the following conditions
+     are met:
+
+         * Redistributions of source code must retain the above copyright
+           notice, this list of conditions and the following disclaimer.
+
+         * Redistributions in binary form must reproduce the above copyright
+           notice, this list of conditions and the following disclaimer in
+           the documentation and/or other materials provided with the
+           distribution.
+
+         * The names of its contributors may be used to endorse or promote
+           products derivedfrom this software without specific prior written
+           permission.
+
+     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+     PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+     OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+     EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+     PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+     PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+     LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+     NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+dd { margin-bottom: 0.5em }
+li { margin-top: 0.5em }
+
+/* ul.menu {
+ * 	border-bottom: ridge thin;
+ * 	border-top: ridge thin;
+ * }
+ * ul.menu li { margin: 0.5em 0; }
+ */
+
+/* table.cartouche td {
+ * 	padding: 0.5em;
+ * 	width: 450px;
+ * }
+ */
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="1-1"></a>
+<a name="g_t1_002d1"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="1_002d2.html#g_t1_002d2">1-2</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="1.html#g_t1">1</a>
+<hr>
+</div>
+
+<h3 class="section">1.1 導入</h3>
+
+<p><a href="info2.zip">info2.zip</a> (2007/06/20)
+
+<p><samp><span class="file">.xyzzy</span></samp> か <samp><span class="file">siteinit.l</span></samp> に以下を記述。
+
+<pre class="smalllisp">     (in-package "editor")
+     (export '(info2 info2-mode) "editor")
+     (autoload 'info2 "info2" t)
+     (autoload 'info2-mode "info2" t)
+     (in-package "user")
+</pre>
+<p>また好みに応じ上記 &lsquo;<samp><span class="samp">(autoload 'info2-mode "info2" t)</span></samp>&rsquo; の下に以下の各種設定を記述して下さい。以下の例はデフォルト値です。変更する必要がない場合は記述しなくてかまいません。
+
+<pre class="smalllisp">     (add-hook '*info2-mode-hook*
+               #'(lambda ()
+                     (setf
+                      ;; スムースにページスクロール
+                      *info2-smooth-scroll-p* t
+                      ;; 履歴の最大長
+                      *info2-max-history-length* 10
+                      ;; ウィンドウ表示領域を N 等分する Search、Bookmark バッファの幅
+                      *info2-window-width* 4
+                      ;; ブックマークファイルのパス
+                      *info2-bookmark-file* (merge-pathnames "infobmk" (user-config-path))
+     
+                      ;; Info Mode のバッファで非表示にするフラグ。
+                      *info2-buffer-flags* (+
+                                            ;;   改行
+                                            *window-flag-newline*
+                                            ;;   全角 Space
+                                            *window-flag-full-width-space*
+                                            ;;   EOF
+                                            *window-flag-eof*
+                                            ;;   半角 Space
+                                            *window-flag-half-width-space*
+                                            )
+                      ;; Search モードのバッファで非表示にするフラグ
+                      *info2-search-buffer-flags* (+
+                                                   ;;   行番号
+                                                   *window-flag-line-number*
+                                                   ;;   改行
+                                                   *window-flag-newline*
+                                                   ;;   全角 Space
+                                                   *window-flag-full-width-space*
+                                                   ;;   垂直スクロールバー
+                                                   *window-flag-vscroll-bar*
+                                                   ;;   EOF
+                                                   *window-flag-eof*
+                                                   ;;   半角 Space
+                                                   *window-flag-half-width-space*
+                                                   )
+                      ;; Bookmark Mode のバッファで非表示にするフラグ
+                      *info2-bookmark-buffer-flags* (+
+                                                     ;;   行番号
+                                                     *window-flag-line-number*
+                                                     ;;   改行
+                                                     *window-flag-newline*
+                                                     ;;   全角 Space
+                                                     *window-flag-full-width-space*
+                                                     ;;   垂直スクロールバー
+                                                     *window-flag-vscroll-bar*
+                                                     ;;   EOF
+                                                     *window-flag-eof*
+                                                     ;;   半角 Space
+                                                     *window-flag-half-width-space*
+                                                     )
+     
+                      ;; Info ファイルのパスと使用するキーワードファイルのパスの連想リスト
+                      ;;
+                      ;;  (list (cons "~/info/language/lisp/reference/reference.info"
+                      ;;              "~/etc/lisp"
+                      ;;              )
+                      ;;        (cons "~/info/software/gnu/gnu_manuals/elisp-manual/elisp"
+                      ;;              "~/etc/lisp"
+                      ;;              )
+                      ;;        )
+                      ;; とか
+                      ;;
+                      *info2-keyword-file-alist* nil
+     
+                      ;; 色付けを行うか
+                      *info2-fontify-p* t
+                      ;; 見出し、メニューエントリで色付けを行う最大数
+                      *info2-fontify-max-num* 100
+     
+                      ;; Node Line 文字色
+                      *info2-node-line-fgcolor* 0
+                      ;; Node Line 背景色
+                      *info2-node-line-bgcolor* 0
+                      ;; Node Line 太字
+                      *info2-node-line-bold-p* t
+     
+                      ;; Node Line File 文字色
+                      *info2-node-line-file-fgcolor* 2
+                      ;; Node Line File 背景色
+                      *info2-node-line-file-bgcolor* 0
+                      ;; Node Line File 太字
+                      *info2-node-line-file-bold-p* nil
+     
+                      ;; Node Line Node 文字色
+                      *info2-node-line-node-fgcolor* 1
+                      ;; Node Line Node 背景色
+                      *info2-node-line-node-bgcolor* 0
+                      ;; Node Line Node 太字
+                      *info2-node-line-node-bold-p* nil
+     
+                      ;; Node Pointer 文字色
+                      *info2-node-pointer-fgcolor* 3
+                      ;; Node Pointer 背景色
+                      *info2-node-pointer-bgcolor* 0
+                      ;; Node Pointer 太字
+                      *info2-node-pointer-bold-p* nil
+     
+                      ;; 見出し文字色
+                      *info2-heading-fgcolor* 1
+                      ;; 見出し背景色
+                      *info2-heading-bgcolor* 0
+                      ;; 見出し太字
+                      *info2-heading-bold-p* t
+     
+                      ;; 見出しを表わす記号 文字色
+                      *info2-heading-decoration-fgcolor* 0
+                      ;; 見出しを表わす記号 背景色
+                      *info2-heading-decoration-bgcolor* 0
+                      ;; 見出しを表わす記号 太字
+                      *info2-heading-decoration-bold-p* t
+     
+                      ;; メニュー見出し文字色
+                      *info2-menu-heading-fgcolor* 0
+                      ;; メニュー見出し背景色
+                      *info2-menu-heading-bgcolor* 0
+                      ;; メニュー見出し太字
+                      *info2-menu-heading-bold-p* t
+     
+                      ;; 相互参照 文字色
+                      *info2-cross-reference-fgcolor* 1
+                      ;; 相互参照 背景色
+                      *info2-cross-reference-bgcolor* 0
+                      ;; 相互参照 太字
+                      *info2-cross-reference-bold-p* nil
+     
+                      ;; 検索文字列 文字色
+                      *info2-search-fgcolor* 0
+                      ;; 検索文字列 背景色
+                      *info2-search-bgcolor* 2
+                      ;; 検索文字列 太字
+                      *info2-search-bold-p* nil
+                      )
+                     )
+               )
+</pre>
+<p>以上の設定を済ませると、<kbd>M-x info2</kbd> と入力することにより Info が起動します。
+
+</body></html>
+

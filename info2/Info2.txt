@@ -1,0 +1,481 @@
+Info2
+*****
+
+いくつも開ける Info モード。
+
+     Copyright (C) 2007, Masanori Miyajima. All rights reserved.
+
+     Redistribution and use in source and binary forms, with or without
+     modification, are permitted provided that the following conditions
+     are met:
+
+         * Redistributions of source code must retain the above copyright
+           notice, this list of conditions and the following disclaimer.
+
+         * Redistributions in binary form must reproduce the above copyright
+           notice, this list of conditions and the following disclaimer in
+           the documentation and/or other materials provided with the
+           distribution.
+
+         * The names of its contributors may be used to endorse or promote
+           products derivedfrom this software without specific prior written
+           permission.
+
+     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+     PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+     OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+     EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+     PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+     PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+     LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+     NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+1 Info2
+*******
+
+Info 形式で書かれたマニュアルを読むためのモード。
+
+1.1 導入
+========
+
+`info2.zip' (2007/06/20)
+
+`.xyzzy' か `siteinit.l' に以下を記述。
+
+     (in-package "editor")
+     (export '(info2 info2-mode) "editor")
+     (autoload 'info2 "info2" t)
+     (autoload 'info2-mode "info2" t)
+     (in-package "user")
+
+また好みに応じ上記 `(autoload 'info2-mode "info2" t)' の下に以下の各種
+設定を記述して下さい。以下の例はデフォルト値です。変更する必要がない場
+合は記述しなくてかまいません。
+
+     (add-hook '*info2-mode-hook*
+               #'(lambda ()
+                     (setf
+                      ;; スムースにページスクロール
+                      *info2-smooth-scroll-p* t
+                      ;; 履歴の最大長
+                      *info2-max-history-length* 10
+                      ;; ウィンドウ表示領域を N 等分する Search、Bookmark バッファの幅
+                      *info2-window-width* 4
+                      ;; ブックマークファイルのパス
+                      *info2-bookmark-file* (merge-pathnames "infobmk" (user-config-path))
+
+                      ;; Info Mode のバッファで非表示にするフラグ。
+                      *info2-buffer-flags* (+
+                                            ;;   改行
+                                            *window-flag-newline*
+                                            ;;   全角 Space
+                                            *window-flag-full-width-space*
+                                            ;;   EOF
+                                            *window-flag-eof*
+                                            ;;   半角 Space
+                                            *window-flag-half-width-space*
+                                            )
+                      ;; Search モードのバッファで非表示にするフラグ
+                      *info2-search-buffer-flags* (+
+                                                   ;;   行番号
+                                                   *window-flag-line-number*
+                                                   ;;   改行
+                                                   *window-flag-newline*
+                                                   ;;   全角 Space
+                                                   *window-flag-full-width-space*
+                                                   ;;   垂直スクロールバー
+                                                   *window-flag-vscroll-bar*
+                                                   ;;   EOF
+                                                   *window-flag-eof*
+                                                   ;;   半角 Space
+                                                   *window-flag-half-width-space*
+                                                   )
+                      ;; Bookmark Mode のバッファで非表示にするフラグ
+                      *info2-bookmark-buffer-flags* (+
+                                                     ;;   行番号
+                                                     *window-flag-line-number*
+                                                     ;;   改行
+                                                     *window-flag-newline*
+                                                     ;;   全角 Space
+                                                     *window-flag-full-width-space*
+                                                     ;;   垂直スクロールバー
+                                                     *window-flag-vscroll-bar*
+                                                     ;;   EOF
+                                                     *window-flag-eof*
+                                                     ;;   半角 Space
+                                                     *window-flag-half-width-space*
+                                                     )
+
+                      ;; Info ファイルのパスと使用するキーワードファイルのパスの連想リスト
+                      ;;
+                      ;;  (list (cons "~/info/language/lisp/reference/reference.info"
+                      ;;              "~/etc/lisp"
+                      ;;              )
+                      ;;        (cons "~/info/software/gnu/gnu_manuals/elisp-manual/elisp"
+                      ;;              "~/etc/lisp"
+                      ;;              )
+                      ;;        )
+                      ;; とか
+                      ;;
+                      *info2-keyword-file-alist* nil
+
+                      ;; 色付けを行うか
+                      *info2-fontify-p* t
+                      ;; 見出し、メニューエントリで色付けを行う最大数
+                      *info2-fontify-max-num* 100
+
+                      ;; Node Line 文字色
+                      *info2-node-line-fgcolor* 0
+                      ;; Node Line 背景色
+                      *info2-node-line-bgcolor* 0
+                      ;; Node Line 太字
+                      *info2-node-line-bold-p* t
+
+                      ;; Node Line File 文字色
+                      *info2-node-line-file-fgcolor* 2
+                      ;; Node Line File 背景色
+                      *info2-node-line-file-bgcolor* 0
+                      ;; Node Line File 太字
+                      *info2-node-line-file-bold-p* nil
+
+                      ;; Node Line Node 文字色
+                      *info2-node-line-node-fgcolor* 1
+                      ;; Node Line Node 背景色
+                      *info2-node-line-node-bgcolor* 0
+                      ;; Node Line Node 太字
+                      *info2-node-line-node-bold-p* nil
+
+                      ;; Node Pointer 文字色
+                      *info2-node-pointer-fgcolor* 3
+                      ;; Node Pointer 背景色
+                      *info2-node-pointer-bgcolor* 0
+                      ;; Node Pointer 太字
+                      *info2-node-pointer-bold-p* nil
+
+                      ;; 見出し文字色
+                      *info2-heading-fgcolor* 1
+                      ;; 見出し背景色
+                      *info2-heading-bgcolor* 0
+                      ;; 見出し太字
+                      *info2-heading-bold-p* t
+
+                      ;; 見出しを表わす記号文字色
+                      *info2-heading-decoration-fgcolor* 0
+                      ;; 見出しを表わす記号背景色
+                      *info2-heading-decoration-bgcolor* 0
+                      ;; 見出しを表わす記号太字
+                      *info2-heading-decoration-bold-p* t
+
+                      ;; メニュー見出し文字色
+                      *info2-menu-heading-fgcolor* 0
+                      ;; メニュー見出し背景色
+                      *info2-menu-heading-bgcolor* 0
+                      ;; メニュー見出し太字
+                      *info2-menu-heading-bold-p* t
+
+                      ;; 相互参照文字色
+                      *info2-cross-reference-fgcolor* 1
+                      ;; 相互参照背景色
+                      *info2-cross-reference-bgcolor* 0
+                      ;; 相互参照太字
+                      *info2-cross-reference-bold-p* nil
+
+                      ;; 検索文字列文字色
+                      *info2-search-fgcolor* 0
+                      ;; 検索文字列背景色
+                      *info2-search-bgcolor* 2
+                      ;; 検索文字列太字
+                      *info2-search-bold-p* nil
+                      )
+                     )
+               )
+
+以上の設定を済ませると、`M-x info2' と入力することにより Info が起動し
+ます。
+
+1.2 dir ファイルの書き方
+========================
+
+dir ファイルは Info を起動するとはじめに表示されるファイルで、通常、各
+Info ファイルへのメニューを記述します。dir ファイルも Info リーダが処理
+できるよう書式化された Info 形式のファイルで、テキストと制御文字で構成
+されます。
+
+通常 Info ファイルは Texinfo ファイルを makeinfo で処理することにより生
+成しますが、各 Info ファイルへのメニューのみであれば、直接テキストエデ
+ィタで簡単に作成することができます。
+
+`dir'
+
+上記に Info ファイル `Info2.info' へのメニューを記述した dir ファイルの
+例を示します。`Info2.info' は dir ファイルがあるフォルダ `info' に置く
+ものとします。始めに空行と、次に制御文字が含まれていることに注意して下
+さい。各 Info ファイルへのメニューは `* Menu:' 以降にアステリスク `*'
+に続き記述します。
+
+さらに Info ファイル `infoman.info', `texinfo.info' を追加するときは以
+下のようになります。
+
+     * Menu:
+
+     * Info2: (Info2.info).
+
+     * infoman: (infoman.info). いろいろな情報を管理するモード
+
+     GNU Manuals
+
+     * GNU Texinfo manual: (GNU/texinfo.info).
+
+`GNU/texinfo.info' は Info ファイル `texinfo.info' がフォルダ `GNU' に
+あることを示します。このように dir ファイルがあるフォルダ `info' からの
+相対パスでファイルを指定することもできます。また、先頭がアステリスク以
+外の行 `GNU Manuals' や、ピリオド以降の文字列‘いろいろな情報を管理する
+モード’は、Info でそのまま表示されることとなります。
+
+1.3 Tips
+========
+
+   * Info ファイルを xyzzy で開いたとき、自動的に Info2-mode にしたいと
+     き。
+
+          (add-hook '*before-find-file-hook*
+                    #'(lambda (file)
+                          (let ((let-type (pathname-type file)))
+                              (cond (
+                                     (string-equal let-type "info")
+                                     (require "info2")
+                                     (info2-mode file)
+                                     (selected-buffer)
+                                     )
+                                    )
+                              )
+                          )
+                    )
+
+   * カーソル位置の単語で指定 Info ファイルの該当ノードを参照 or
+     CalMemo のログから検索とか。 `(case buffer-mode' 以下あたりと
+     CalMemo のログディレクトリ `(merge-pathnames ".calmemo/log"
+     (user-config-path))' を各自書き換えて下さい。
+
+          (defun my-view-info-reference ()
+              "\
+          カーソル位置の単語でモード毎のマニュアルを検索。
+          "
+              (interactive)
+              (require "info2")
+              (let (
+                    (let-buffer (selected-buffer))
+                    (let-index (my-get-index))
+                    )
+                  (when let-index
+                      (delete-other-windows)
+                      (split-window)
+                      (case buffer-mode
+                          ;; lisp-mode
+                          (
+                           'lisp-mode
+                           (info2-mode "~/info/Language/Lisp/reference/reference.info" "*Reference*")
+                           (info2-index let-index)
+                           )
+                          ;; lisp-interaction-mode
+                          (
+                           'lisp-interaction-mode
+                           (info2-mode "~/info/Language/Lisp/reference/reference.info" "*Reference*")
+                           (info2-index let-index)
+                           )
+                          ;; texinfo-mode
+                          (
+                           'texinfo-mode
+                           (info2-mode "~/info/Language/Texinfo/Texinfo.info" "*Reference*")
+                           (info2-index let-index)
+                           )
+
+                          ;; その他
+                          (
+                           t
+                           ;; CalMemo から検索
+                           (require "grepd")
+                           (setf
+                            ;; 正規表現
+                            *grep-regexp-search* t
+                            ;; サブディレクトリも検索
+                            *grep-subdir* t
+                            )
+
+                           ;; CalMemo ログディレクトリ Grep
+                           (scan-files (decode-escape-sequence (concat "^\*.*" let-index) t)
+                                       "*.clm"
+                                       (merge-pathnames ".calmemo/log" (user-config-path))
+                                       )
+
+                           ;; 複数見つからなければ即表示
+                           (unless (> (buffer-lines) 2)
+                               (first-error)
+                               (recenter 0)
+                               (other-window)
+                               ;; Grep バッファを閉じる
+                               (close-selected-buffer)
+                               )
+                           )
+                          )
+
+                      ;; 元いたバッファを表示しているウィンドウへ
+                      (set-window (get-buffer-window let-buffer))
+                      )
+                  )
+              )
+
+          (global-set-key #\S-F1 'my-view-info-reference)
+
+
+1.4 変更履歴
+============
+
+   * 2007/06/20
+
+        * みんなが自由に使えるよう修正 BSD ライセンスを適用。
+
+        * Info 文書を加筆 & 修正。
+
+        * Info 文書をテキストで出力しそれも添付。
+
+   * 2007/05/11
+
+        * info2-scroll-up、 info2-forward-node
+          がバグってたのを修正とか。
+
+        * Info 文書添付。
+
+   * 2007/05/07
+
+        * 自分勝手に info2-scroll-down を F14 から F15 に変更。
+
+   * 2007/04/27
+
+        * 関数 info2-mode の引数として存在しないファイルパスが指定され
+          たときを考慮。
+
+        * 関数 info2-mode で Info モードに入ったときキーワード色付けが
+          できていなかったのを修正。
+
+        * キーワードがクリアされたとき、またはキーワードファイルが取得
+          できなかったときそれぞれにメッセージを表示するようにした。
+
+   * 2007/04/15
+
+        * inof-edit 追加。
+
+        * ちゃんと export。
+
+        * Commentary にもっとヘルプ書いた。
+
+        * Debug しやすいように。
+
+        * その他こまかな修正。
+
+   * 2007/04/11
+
+        * 初版公開
+
+
+2 キーバインド
+**************
+
+2.1 Info モード
+===============
+
+     <TAB> ：次の相互参照 or メニューに移動
+     <RET> ：現在行の相互参照 or メニューが指すノードへ移動
+     <SPC> ：上にページスクロール or 次のノードへ
+     <.>   ：Info バッファ先頭へ
+
+     <0> ～ <9> ：N 番目のメニューエントリ先に移動
+
+     <[> ：前のノードへ移動
+     <]> ：次のノードへ移動
+     <a> ：現在位置を Bookmark に追加
+     <b> ：Info バッファ先頭へ
+     <B> ：Bookmark ウィンドウを開く
+     <d> ：DIR に移動
+     <e> ：閲覧中のノード内容を編集
+     <f> ：指定した相互参照先へ移動
+     <g> ：指定ノードへ移動
+     <i> ：Index 検索
+     <I> ：Index or Search ウィンドウを開く
+
+     `M-i' ：Index ノードに移動
+
+     <k> ：キーワード色付けトグル
+     <l> ：ノード履歴戻る
+     <L> ：ノード履歴進む
+     <m> ：指定したメニュー先へ移動
+     <n> ：Next Node へ移動
+     <p> ：Prev Node へ移動
+     <q> ：Info Mode 終了
+     <s> ：指定語句を現在のノード以下から検索
+     <S> ：Index or Search ウィンドウを開く
+     <t> ：Top Node へ移動
+     <u> ：Up Node へ移動
+     <v> ：下へページスクロール
+     <z> ：上へページスクロール
+
+     F13 ：前の相互参照 or Menu に移動
+     (set-extended-key-translate-table exkey-S-tab #\F13)
+     とかして S-Tab に設定するとか
+
+     F15 ：上にページスクロール or 次のノードへ
+     (set-extended-key-translate-table exkey-S-space #\F15)
+     とかして S-Spc に設定するとか
+
+     Double Click ：現在行の相互参照 or メニューが指すノードへ移動
+     Triple Click ：ノード履歴戻る
+
+2.2 Search モード
+=================
+
+     <TAB> ：現在行のノードを Info ウィンドウに表示
+     <RET> ：現在行のノードに移動し Search ウィンドウを閉じる
+     <SPC> ：現在行のノードを表示し Info ウィンドウに移動
+
+     <n> ：次の行へ移動しその行のノードを Info バッファに表示
+     <p> ：前の行へ移動しその行のノードを Info バッファに表示
+     <q> ：Search ウィンドウを閉じる
+     <v> ：下へページスクロール
+     <z> ：上へページスクロール
+
+     Double Click ：現在行のノードを表示し Info ウィンドウに移動
+
+2.3 Bookmark モード
+===================
+
+     <TAB> ：現在行のノードを Info ウィンドウに表示
+     <RET> ：現在行のノードに移動し Bookmark ウィンドウを閉じる
+     <SPC> ：現在行のノードを表示し Info ウィンドウに移動
+
+     <d> ：カーソル位置のブックマークを削除
+     <i> ：カーソル位置に文字列を挿入
+     <n> ：次の行へ移動
+     <N> ：現在行のブックマークを下に移動
+     <o> ：カーソル位置に空行を挿入
+     <p> ：前の行へ移動
+     <P> ：現在行のブックマークを上に移動
+     <q> ：Bookmark バッファを閉じる
+     <r> ：ブックマークのタイトル変更
+     <v> ：下へページスクロール
+     <w> ：カーソル行のブックマークを切り取り
+     <y> ：カーソル行に切り取ったブックマークを貼り付け
+     <z> ：上へページスクロール
+
+     Double Click ：現在行のノードを表示し Info ウィンドウに移動
+
+2.4 Edit モード
+===============
+
+     `C-c C-c' ：編集内容を保存し編集モードを終了
+     `C-x C-k' ：変更を取り消し編集モードを終了
+
+     あとは Text モードと同じ。
+

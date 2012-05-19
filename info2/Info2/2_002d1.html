@@ -1,0 +1,129 @@
+<html lang="ja">
+<head>
+<title>2-1 - Info2</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Info2">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="2.html#g_t2" title="2">
+<link rel="next" href="2_002d2.html#g_t2_002d2" title="2-2">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+     Copyright (C) 2007, Masanori Miyajima. All rights reserved.
+
+     Redistribution and use in source and binary forms, with or without
+     modification, are permitted provided that the following conditions
+     are met:
+
+         * Redistributions of source code must retain the above copyright
+           notice, this list of conditions and the following disclaimer.
+
+         * Redistributions in binary form must reproduce the above copyright
+           notice, this list of conditions and the following disclaimer in
+           the documentation and/or other materials provided with the
+           distribution.
+
+         * The names of its contributors may be used to endorse or promote
+           products derivedfrom this software without specific prior written
+           permission.
+
+     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+     PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+     OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+     EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+     PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+     PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+     LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+     NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+dd { margin-bottom: 0.5em }
+li { margin-top: 0.5em }
+
+/* ul.menu {
+ * 	border-bottom: ridge thin;
+ * 	border-top: ridge thin;
+ * }
+ * ul.menu li { margin: 0.5em 0; }
+ */
+
+/* table.cartouche td {
+ * 	padding: 0.5em;
+ * 	width: 450px;
+ * }
+ */
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="2-1"></a>
+<a name="g_t2_002d1"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="2_002d2.html#g_t2_002d2">2-2</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="2.html#g_t2">2</a>
+<hr>
+</div>
+
+<h3 class="section">2.1 Info モード</h3>
+
+<pre class="display">     <a name="index-TAB-1"></a>&lt;TAB&gt; ：次の相互参照 or メニューに移動
+     <a name="index-RET-2"></a>&lt;RET&gt; ：現在行の相互参照 or メニューが指すノードへ移動
+     <a name="index-SPC-3"></a>&lt;SPC&gt; ：上にページスクロール or 次のノードへ
+     <a name="index-g_t_002e-4"></a>&lt;.&gt;   ：Info バッファ先頭へ
+     
+     <a name="index-g_t0-5"></a><a name="index-g_t1-6"></a><a name="index-g_t2-7"></a><a name="index-g_t3-8"></a><a name="index-g_t4-9"></a><a name="index-g_t5-10"></a><a name="index-g_t6-11"></a><a name="index-g_t7-12"></a><a name="index-g_t8-13"></a><a name="index-g_t9-14"></a>&lt;0&gt; ～ &lt;9&gt; ：N 番目のメニューエントリ先に移動
+     
+     <a name="index-g_t_005b-15"></a>&lt;[&gt; ：前のノードへ移動
+     <a name="index-g_t_005d-16"></a>&lt;]&gt; ：次のノードへ移動
+     <a name="index-a-17"></a>&lt;a&gt; ：現在位置を Bookmark に追加
+     <a name="index-b-18"></a>&lt;b&gt; ：Info バッファ先頭へ
+     <a name="index-B-19"></a>&lt;B&gt; ：Bookmark ウィンドウを開く
+     <a name="index-d-20"></a>&lt;d&gt; ：DIR に移動
+     <a name="index-e-21"></a>&lt;e&gt; ：閲覧中のノード内容を編集
+     <a name="index-f-22"></a>&lt;f&gt; ：指定した相互参照先へ移動
+     <a name="index-g-23"></a>&lt;g&gt; ：指定ノードへ移動
+     <a name="index-i-24"></a>&lt;i&gt; ：Index 検索
+     <a name="index-I-25"></a>&lt;I&gt; ：Index or Search ウィンドウを開く
+     
+     <a name="index-M_002di-26"></a><kbd>M-i</kbd> ：Index ノードに移動
+     
+     <a name="index-k-27"></a>&lt;k&gt; ：キーワード色付けトグル
+     <a name="index-l-28"></a>&lt;l&gt; ：ノード履歴 戻る
+     <a name="index-L-29"></a>&lt;L&gt; ：ノード履歴 進む
+     <a name="index-m-30"></a>&lt;m&gt; ：指定したメニュー先へ移動
+     <a name="index-n-31"></a>&lt;n&gt; ：Next Node へ移動
+     <a name="index-p-32"></a>&lt;p&gt; ：Prev Node へ移動
+     <a name="index-q-33"></a>&lt;q&gt; ：Info Mode 終了
+     <a name="index-s-34"></a>&lt;s&gt; ：指定語句を現在のノード以下から検索
+     <a name="index-S-35"></a>&lt;S&gt; ：Index or Search ウィンドウを開く
+     <a name="index-t-36"></a>&lt;t&gt; ：Top Node へ移動
+     <a name="index-u-37"></a>&lt;u&gt; ：Up Node へ移動
+     <a name="index-v-38"></a>&lt;v&gt; ：下へページスクロール
+     <a name="index-z-39"></a>&lt;z&gt; ：上へページスクロール
+     
+     F13 ：前の相互参照 or Menu に移動
+     (set-extended-key-translate-table exkey-S-tab #\F13)
+     とかして S-Tab に設定するとか
+     
+     F15 ：上にページスクロール or 次のノードへ
+     (set-extended-key-translate-table exkey-S-space #\F15)
+     とかして S-Spc に設定するとか
+     
+     Double Click ：現在行の相互参照 or メニューが指すノードへ移動
+     Triple Click ：ノード履歴 戻る
+</pre>
+</body></html>
+
