@@ -1,0 +1,5 @@
+(in-package "editor")
+(export '(info2 info2-mode) "editor")
+(autoload 'info2 "info2" t)
+(autoload 'info2-mode "info2" t)
+(in-package "user")
