@@ -57,6 +57,8 @@
 ;;;	・個人的な作業で検索したいような場合に使用ください。
 
 ;;; changes
+;;;	Sat, 19 May 2012 15:07:54 +0900
+;;;		・配布ページにxyzzy本体の配布に準ずる、となっているのでMIT/Xのライセンス文を追加。(mumurik765)
 ;;;	Sat, 03 May 2003 00:07:55 +0900
 ;;;		・NetInstaller対応（書き忘れ）
 ;;;		・説明文の修正（書き忘れ）
@@ -67,6 +69,26 @@
 ;;;		・サイトに載せるよう体裁を整えた
 ;;;	Thu, 20 Jun 2002 00:51:44 +0900
 ;;;		・初版
+;;;
+;;; License
+#|
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies
+or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+|#
+
 
 (provide "tdict/tdict")
 
