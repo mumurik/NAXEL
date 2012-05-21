@@ -91,6 +91,9 @@
 
 ;; Changes:
 ;;
+;;      Tue, 22 May 2012 00:00:00 +0900
+;;        ・xyzzy.ini のパス取得に xyzzy-ini-path を用いるように変更 (xyzzy-17-638)
+;;
 ;;      Sat, 08 Oct 2005 11:00:12 +0900
 ;;        ・メールアドレスを変更。
 ;;        ・ライセンス条項(修正BSDライセンス)を記載。
@@ -286,9 +289,14 @@
                                      (si:make-string-chunk str)
                                      (si:make-string-chunk file)))
 
+(defun chini-get-xyzzy-ini-path ()
+  (if (fboundp 'xyzzy-ini-path)
+	  (xyzzy-ini-path)
+	(merge-pathnames "xyzzy.ini" (user-config-path))))
+
 (defun chini-read-config-data-1 (section &optional config-path)
   (unless config-path
-    (setq config-path (merge-pathnames "xyzzy.ini" (user-config-path))))
+    (setq config-path (chini-get-xyzzy-ini-path)))
   (when (file-exist-p config-path)
     (let ((temp-buffer (create-new-buffer *chini-buffer-name-tmp*))
           alist)
@@ -317,7 +325,7 @@
 
 (defun chini-write-config-data (data &optional config-path)
   (unless config-path
-    (setq config-path (merge-pathnames "xyzzy.ini" (user-config-path))))
+    (setq config-path (chini-get-xyzzy-ini-path)))
   (let (section key val)
     (dolist (x data)
       (setq section (car x))
@@ -469,7 +477,7 @@
   (interactive "FFile: " :default0
     (merge-pathnames (concat "xyzzy-" (format-date-string "%Y%m%d_%H%M") ".ini")
                      *chini-backup-config-file-directory*))
-  (let ((config-file (merge-pathnames "xyzzy.ini" (user-config-path))))
+  (let ((config-file (chini-get-xyzzy-ini-path)))
     (when (and (file-exist-p config-file)
                (valid-path-p file))
       (copy-file config-file file :if-exists :overwrite)
@@ -478,7 +486,7 @@
 (defun chini-restore-config-file (file)
   "chini: xyzzy.ini のリストア"
   (interactive "fFile: " :default0 *chini-backup-config-file-directory*)
-  (let ((config-file (merge-pathnames "xyzzy.ini" (user-config-path))))
+  (let ((config-file (chini-get-xyzzy-ini-path)))
     (if (file-exist-p file)
         (progn
           (copy-file file config-file :if-exists :overwrite)
